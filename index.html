@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Мои Практики и Дневник</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Source Sans 3',-apple-system,sans-serif;background:#EEEbF7;color:#1E1D3D;min-height:100vh;padding:0 0 100px 0}
+
+  /* HEADER */
+  .header{background:linear-gradient(135deg,#7C6BAD,#6A57A0);color:#fff;padding:28px 20px 22px;text-align:center;position:sticky;top:0;z-index:10}
+  .header h1{font-size:17px;font-weight:500;letter-spacing:.03em}
+  .header p{font-size:12px;font-weight:300;margin-top:4px;opacity:.8}
+
+  .container{max-width:480px;margin:0 auto;padding:14px}
+
+  /* TAB NAV */
+  .tab-nav{display:flex;gap:6px;margin-bottom:16px;background:#fff;border-radius:12px;padding:6px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .tab-btn{flex:1;padding:9px 4px;border:none;border-radius:8px;background:transparent;font-family:inherit;font-size:13px;font-weight:500;color:#9580C8;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+  .tab-btn.active{background:#7C6BAD;color:#fff}
+
+  /* SECTIONS */
+  .section{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .section-num{display:inline-block;width:22px;height:22px;background:#7C6BAD;color:#fff;border-radius:50%;text-align:center;line-height:22px;font-size:12px;font-weight:600;margin-right:6px;vertical-align:middle}
+  .section-title{font-size:14px;font-weight:600;color:#4A3A80;display:inline;vertical-align:middle}
+  .section-head{margin-bottom:8px}
+
+  /* PRACTICE CARDS */
+  .practice-card{background:#fff;border-radius:14px;margin-bottom:12px;box-shadow:0 1px 4px rgba(124,107,173,.12);border:1px solid #E5DCFA;overflow:hidden}
+  .practice-card-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+  .practice-card-header:active{background:#F8F5FF}
+  .practice-icon-title{display:flex;align-items:center;gap:10px}
+  .practice-icon{font-size:20px;flex-shrink:0}
+  .practice-name{font-size:14px;font-weight:600;color:#4A3A80;line-height:1.3}
+  .practice-goal{font-size:11px;color:#9580C8;margin-top:2px;font-weight:400}
+  .chevron{font-size:14px;color:#B8A8E0;transition:transform .25s;flex-shrink:0}
+  .chevron.open{transform:rotate(180deg)}
+  .practice-body{padding:0 16px 14px;display:none;border-top:1px solid #F0EAF8}
+  .practice-body.open{display:block}
+  .practice-body-inner{padding-top:12px}
+
+  .step{display:flex;gap:10px;margin-bottom:10px}
+  .step-num{width:22px;height:22px;background:#EDE6FF;color:#7C6BAD;border-radius:50%;text-align:center;line-height:22px;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
+  .step-content{font-size:13px;color:#3A2F6A;line-height:1.55}
+  .step-content strong{font-weight:600;color:#4A3A80}
+  .step-content em{font-style:italic;color:#6A5898}
+
+  .bullet{display:flex;gap:8px;margin-bottom:7px}
+  .bullet-dot{width:6px;height:6px;background:#B8A8E0;border-radius:50%;flex-shrink:0;margin-top:7px}
+  .bullet-text{font-size:13px;color:#3A2F6A;line-height:1.5}
+
+  .sub-option{padding:8px 12px;border-radius:8px;margin-bottom:6px;font-size:13px;color:#3A2F6A;line-height:1.45}
+  .sub-option.interest{background:#EBF7EE;border-left:3px solid #6ABF80}
+  .sub-option.whip{background:#FFF0F0;border-left:3px solid #E08080}
+  .sub-option .opt-label{font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
+  .sub-option.interest .opt-label{color:#4A9A60}
+  .sub-option.whip .opt-label{color:#C06060}
+
+  .hint{font-size:12px;color:#7A68B0;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:#F5F0FF;border-radius:8px;border-left:3px solid #C5B8E8}
+  .reminder-box{background:#F5F0FF;border-radius:10px;padding:12px 14px;border-left:4px solid #9580C8;font-size:13px;color:#3A2F6A;line-height:1.6}
+  .reminder-box strong{color:#4A3A80}
+
+  /* DIARY */
+  .entry-block{margin-bottom:20px}
+  .entry-header{display:flex;align-items:center;justify-content:space-between;padding:10px 0;margin-bottom:6px}
+  .entry-label{font-size:15px;font-weight:600;color:#7C6BAD}
+  .entry-delete{font-size:12px;color:#B85470;background:none;border:1px solid #B85470;border-radius:6px;padding:4px 10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .entry-separator{height:3px;background:linear-gradient(90deg,transparent,#9580C8,transparent);margin:16px 0 12px;opacity:.4}
+
+  textarea{width:100%;border:1.5px solid #D8CEED;border-radius:8px;padding:10px 12px;font-family:inherit;font-size:14px;color:#1E1D3D;background:#FDFAFF;resize:none;outline:none;transition:border-color .2s;line-height:1.5}
+  textarea:focus{border-color:#7C6BAD}
+  textarea::placeholder{color:#C0B0DA}
+  .date-row{display:flex;gap:8px}
+  .date-input,.time-input{flex:1;border:1.5px solid #D8CEED;border-radius:8px;padding:10px 12px;font-family:inherit;font-size:14px;color:#1E1D3D;background:#FDFAFF;outline:none}
+  .date-input:focus,.time-input:focus{border-color:#7C6BAD}
+
+  .practice-used-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #EDE6FA;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .practice-used-item:last-child{border-bottom:none}
+  .checkbox{width:22px;height:22px;border:2px solid #C8BAE8;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+  .checkbox.checked{background:#7C6BAD;border-color:#7C6BAD}
+  .checkbox.checked::after{content:'\2713';color:#fff;font-size:14px;font-weight:600}
+  .practice-used-text{font-size:14px;color:#4A3A80}
+  .sub-label{font-size:13px;font-weight:500;color:#7C6BAD;margin:10px 0 4px}
+
+  /* BUTTONS */
+  .copy-btn{display:block;width:100%;padding:16px;background:#7C6BAD;color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;transition:all .2s}
+  .copy-btn:active{transform:scale(.98);background:#6A57A0}
+  .copy-btn.copied{background:#5A9A70}
+  .clear-btn{display:block;width:100%;padding:12px;background:transparent;color:#A890CC;border:1.5px solid #D8CEED;border-radius:12px;font-family:inherit;font-size:14px;cursor:pointer;margin-top:8px}
+  .add-btn{display:block;width:100%;padding:14px;background:#fff;color:#7C6BAD;border:2px dashed #C5B8E8;border-radius:12px;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;margin-top:6px;transition:all .2s;-webkit-tap-highlight-color:transparent}
+  .add-btn:active{background:#F5F0FF}
+  .divider{height:2px;background:linear-gradient(90deg,transparent,#C5B8E8,transparent);margin:6px 0}
+  .copy-section{padding:16px 0}
+
+  /* REFLECTION */
+  .reflect-q{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(124,107,173,.1);border:1px solid #E5DCFA}
+  .reflect-q-text{font-size:13px;color:#4A3A80;font-style:italic;line-height:1.6;margin-bottom:10px}
+  .reflect-q-text::before{content:'"';font-size:22px;color:#C5B8E8;font-style:normal;line-height:0;vertical-align:-8px;margin-right:4px}
+  .final-note{text-align:center;font-size:13px;color:#9580C8;padding:20px 10px;font-style:italic}
+
+  /* TAB PAGES */
+  .tab-page{display:none}
+  .tab-page.active{display:block}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>МОИ ПРАКТИКИ И ДНЕВНИК</h1>
+  <p>Справочник практик · Дневник наблюдений · Рефлексия</p>
+</div>
+
+<div class="container">
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('practices')">🌿 Практики</button>
+    <button class="tab-btn" onclick="showTab('diary')">📓 Дневник</button>
+    <button class="tab-btn" onclick="showTab('reflect')">💭 Рефлексия</button>
+  </div>
+
+  <!-- ======================== TAB: ПРАКТИКИ ======================== -->
+  <div class="tab-page active" id="tab-practices">
+
+    <!-- Ритуал «Хочешь чаю?» -->
+    <div class="practice-card">
+      <div class="practice-card-header" onclick="toggleCard(this)">
+        <div class="practice-icon-title">
+          <span class="practice-icon">🍵</span>
+          <div>
+            <div class="practice-name">Ритуал «Хочешь чаю?»</div>
+            <div class="practice-goal">Остановка Внутреннего Критика</div>
+          </div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="practice-body">
+        <div class="practice-body-inner">
+          <div class="hint">Разорвать паттерн самобичевания, снизить тревогу и проявить к себе безусловную заботу.</div>
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content"><strong>Пауза:</strong> Как только ловишь себя на прокрастинации, чувстве вины за «неидеальность» или желании срочно начать очередное обучение — скажи себе <strong>СТОП</strong>.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content"><strong>Слова заботы:</strong> Мысленно или вслух произнеси: <em>«Хочешь чаю?»</em> или <em>«Я вижу, что тебе сейчас тревожно. Я с тобой, и я принимаю тебя любую».</em></div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content"><strong>Действие:</strong> Подкрепи слова делом. Завари чай, обними себя, или легально отдохни 15 минут без телефона и чувства вины.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Компас мотивации -->
+    <div class="practice-card">
+      <div class="practice-card-header" onclick="toggleCard(this)">
+        <div class="practice-icon-title">
+          <span class="practice-icon">🧭</span>
+          <div>
+            <div class="practice-name">Компас мотивации</div>
+            <div class="practice-goal">Хлыст или Интерес?</div>
+          </div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="practice-body">
+        <div class="practice-body-inner">
+          <div class="hint">Отделить истинные желания от достигаторства, навязанного тревогой.</div>
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content"><strong>Сканирование:</strong> Перед началом «полезного» дела сделай паузу на 10 секунд и прислушайся к телу.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content"><strong>Оценка ощущений:</strong></div>
+          </div>
+          <div class="sub-option interest" style="margin-left:32px;margin-bottom:8px">
+            <div class="opt-label">Интерес ✓</div>
+            Лёгкое предвкушение, тепло, спокойная энергия
+          </div>
+          <div class="sub-option whip" style="margin-left:32px;margin-bottom:8px">
+            <div class="opt-label">Хлыст критика ✗</div>
+            Спешка, напряжение, фоновая тревога, мысль «надо быстрее / надо стать лучше»
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content"><strong>Вопрос к себе:</strong> <em>«Кто сейчас отправляет меня это делать? Моё искреннее любопытство или страх быть недостаточной?»</em></div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content"><strong>Выбор:</strong> Если это критик — разреши себе сделать дело «на троечку» или отложи и легально отдохни (→ ритуал «Хочешь чаю?»).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Эксперимент с запланированной ошибкой -->
+    <div class="practice-card">
+      <div class="practice-card-header" onclick="toggleCard(this)">
+        <div class="practice-icon-title">
+          <span class="practice-icon">🔬</span>
+          <div>
+            <div class="practice-name">Эксперимент с запланированной ошибкой</div>
+            <div class="practice-goal">Ошибка ≠ отвержение</div>
+          </div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="practice-body">
+        <div class="practice-body-inner">
+          <div class="hint">Доказать Внутреннему критику на практике, что ошибка не равна отвержению.</div>
+          <div class="bullet">
+            <div class="bullet-dot"></div>
+            <div class="bullet-text">Выберите маленькую, безопасную ошибку (опечатка, оговорка, недосоленная еда).</div>
+          </div>
+          <div class="bullet">
+            <div class="bullet-dot"></div>
+            <div class="bullet-text">Запишите <strong>предсказание Критика</strong> — что ужасного случится.</div>
+          </div>
+          <div class="bullet">
+            <div class="bullet-dot"></div>
+            <div class="bullet-text">Совершите ошибку.</div>
+          </div>
+          <div class="bullet">
+            <div class="bullet-dot"></div>
+            <div class="bullet-text">Запишите <strong>реальный результат</strong> — уволили ли? отвернулись ли?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Декатастрофизация «Обычности» -->
+    <div class="practice-card">
+      <div class="practice-card-header" onclick="toggleCard(this)">
+        <div class="practice-icon-title">
+          <span class="practice-icon">⚖️</span>
+          <div>
+            <div class="practice-name">Декатастрофизация «Обычности»</div>
+            <div class="practice-goal">Напоминание о норме</div>
+          </div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="practice-body">
+        <div class="practice-body-inner">
+          <div class="reminder-box">
+            Быть «среднячком» — это не дефект. Это <strong>нормальная стартовая позиция</strong>.<br><br>
+            Успех состоит из <strong>80% упорного труда</strong>, 10% таланта и 10% удачи.<br><br>
+            Ошибаться в процессе труда — это <strong>часть пути</strong>, а не доказательство никчемности.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-practices -->
+
+
+  <!-- ======================== TAB: ДНЕВНИК ======================== -->
+  <div class="tab-page" id="tab-diary">
+
+    <div id="entries"></div>
+
+    <button class="add-btn" onclick="addEntry()">+ Добавить запись</button>
+
+    <div class="divider" style="margin-top:16px"></div>
+
+    <div class="section" style="margin-top:10px">
+      <div class="section-head"><span class="section-title">Применённые практики</span></div>
+      <div class="sub-label">Отметьте то, что использовали сегодня</div>
+      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">🍵 Ритуал «Хочешь чаю?»</div></div>
+      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">🧭 Компас мотивации: Хлыст или Интерес</div></div>
+      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">🔬 Эксперимент с запланированной ошибкой</div></div>
+      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">⚖️ Декатастрофизация «Обычности»</div></div>
+    </div>
+
+    <div class="copy-section">
+      <button class="copy-btn" id="copyBtn" onclick="copyAll()">СКОПИРОВАТЬ ВСЁ В ДНЕВНИК</button>
+      <button class="clear-btn" onclick="clearAll()">Очистить всё</button>
+    </div>
+
+  </div><!-- /tab-diary -->
+
+
+  <!-- ======================== TAB: РЕФЛЕКСИЯ ======================== -->
+  <div class="tab-page" id="tab-reflect">
+
+    <div class="reflect-q">
+      <div class="reflect-q-text">Если бы я точно знала, что меня уже любят и ценят, чем бы я занялась прямо сейчас ради удовольствия, а не ради «улучшения себя»?</div>
+      <textarea rows="5" placeholder="Свободные мысли..."></textarea>
+    </div>
+
+    <div class="reflect-q">
+      <div class="reflect-q-text">Как выглядит мой процесс обучения или работы, если из него убрать страх ошибки и требование идеальности?</div>
+      <textarea rows="5" placeholder="Свободные мысли..."></textarea>
+    </div>
+
+    <div class="reflect-q">
+      <div class="reflect-q-text">Что сегодня я сделала «хорошо» — не идеально, а именно хорошо? Что я могу себе за это сказать?</div>
+      <textarea rows="5" placeholder="Свободные мысли..."></textarea>
+    </div>
+
+    <div class="copy-section">
+      <button class="copy-btn" onclick="copyReflect()">СКОПИРОВАТЬ РЕФЛЕКСИЮ</button>
+    </div>
+
+    <div class="final-note">Создано для поддержки в терапии.<br>Помни: ты уже достаточна. 💜</div>
+
+  </div><!-- /tab-reflect -->
+
+</div><!-- /container -->
+
+<script>
+/* ---- Tabs ---- */
+function showTab(name) {
+  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+/* ---- Practice accordion ---- */
+function toggleCard(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+
+/* ---- Diary ---- */
+let entryCount = 0;
+function uid() { return 'e' + (++entryCount); }
+function now() {
+  const d = new Date();
+  return { date: d.toISOString().split('T')[0], time: `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}` };
+}
+
+function entryHTML(id, n) {
+  const t = now();
+  return `
+  <div class="entry-block" id="${id}">
+    ${n > 1 ? '<div class="entry-separator"></div>' : ''}
+    <div class="entry-header">
+      <span class="entry-label">Запись ${n}</span>
+      ${n > 1 ? `<button class="entry-delete" onclick="removeEntry('${id}')">Удалить</button>` : ''}
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-num">1</span><span class="section-title">Дата и время</span></div>
+      <div class="date-row">
+        <input type="date" class="date-input" data-f="date" value="${t.date}">
+        <input type="time" class="time-input" data-f="time" value="${t.time}">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-num">2</span><span class="section-title">Ситуация</span></div>
+      <div class="hint">Что произошло? Где были, что делали, что стало пусковым моментом?</div>
+      <textarea data-f="situation" rows="3" placeholder="Коротко опишите, что произошло..."></textarea>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-num">3</span><span class="section-title">Голос Критика</span></div>
+      <div class="hint">Что он сказал? Какие эмоции и ощущения в теле появились?</div>
+      <textarea data-f="critic" rows="3" placeholder="Слова критика, эмоции, телесные ощущения..."></textarea>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-num">4</span><span class="section-title">Применённая практика</span></div>
+      <div class="hint">Компас, Чай, Эксперимент, Декатастрофизация — или своя реакция.</div>
+      <textarea data-f="practice" rows="2" placeholder="Что вы сделали в ответ..."></textarea>
+    </div>
+
+    <div class="section">
+      <div class="section-head"><span class="section-num">5</span><span class="section-title">Результат</span></div>
+      <div class="hint">Как изменилось состояние? Реальность vs Страх — что оказалось правдой?</div>
+      <textarea data-f="result" rows="3" placeholder="Что реально произошло? Как себя почувствовали..."></textarea>
+    </div>
+
+    <div class="copy-section" style="padding:8px 0">
+      <button class="copy-btn" onclick="copyEntry('${id}')">СКОПИРОВАТЬ ЭТУ ЗАПИСЬ</button>
+    </div>
+  </div>`;
+}
+
+function addEntry() {
+  const id = uid();
+  const c = document.getElementById('entries');
+  const n = c.querySelectorAll('.entry-block').length + 1;
+  c.insertAdjacentHTML('beforeend', entryHTML(id, n));
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function removeEntry(id) {
+  if (!confirm('Удалить эту запись?')) return;
+  document.getElementById(id).remove();
+  document.querySelectorAll('.entry-block').forEach((el, i) => { el.querySelector('.entry-label').textContent = `Запись ${i+1}`; });
+}
+
+function toggleCheck(item) { item.querySelector('.checkbox').classList.toggle('checked'); }
+
+function formatDate(d, t) {
+  if (!d) return '-';
+  const dt = new Date(d);
+  const m = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  let r = `${dt.getDate()} ${m[dt.getMonth()]} ${dt.getFullYear()}`;
+  if (t) r += `, ${t}`;
+  return r;
+}
+
+function readEntry(block) {
+  const g = (f) => { const el = block.querySelector(`[data-f="${f}"]`); return el ? (el.value||'').trim() : ''; };
+  let t = '';
+  t += `📅 ${formatDate(g('date'), g('time'))}\n\n`;
+  t += `2. Ситуация\n${g('situation')||'-'}\n\n`;
+  t += `3. Голос Критика\n${g('critic')||'-'}\n\n`;
+  t += `4. Применённая практика\n${g('practice')||'-'}\n\n`;
+  t += `5. Результат (Реальность vs Страх)\n${g('result')||'-'}\n\n---\n`;
+  return t;
+}
+
+function getPractices() {
+  const items = [];
+  document.querySelectorAll('#tab-diary > .section .checkbox.checked').forEach(cb => {
+    items.push(cb.parentElement.querySelector('.practice-used-text').textContent);
+  });
+  return items.length ? `\nПрактики сегодня:\n${items.map(i=>'✓ '+i).join('\n')}` : '';
+}
+
+function copyEntry(id) {
+  const block = document.getElementById(id);
+  const text = readEntry(block);
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = block.querySelector('.copy-btn');
+    btn.textContent = 'СКОПИРОВАНО ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent='СКОПИРОВАТЬ ЭТУ ЗАПИСЬ'; btn.classList.remove('copied'); }, 2500);
+  });
+}
+
+function copyAll() {
+  const blocks = document.querySelectorAll('.entry-block');
+  let all = 'МОЙ ДНЕВНИК НАБЛЮДЕНИЙ\n' + '─'.repeat(30) + '\n\n';
+  blocks.forEach(b => { all += readEntry(b) + '\n'; });
+  all += getPractices();
+  navigator.clipboard.writeText(all).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'СКОПИРОВАНО ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent='СКОПИРОВАТЬ ВСЁ В ДНЕВНИК'; btn.classList.remove('copied'); }, 2500);
+  });
+}
+
+function clearAll() {
+  if (!confirm('Очистить все записи?')) return;
+  document.getElementById('entries').innerHTML = '';
+  document.querySelectorAll('#tab-diary > .section .checkbox').forEach(c => c.classList.remove('checked'));
+  entryCount = 0;
+  addEntry();
+}
+
+function copyReflect() {
+  const areas = document.querySelectorAll('#tab-reflect textarea');
+  const questions = [
+    'Если бы меня уже любили и ценили, чем бы я занялась ради удовольствия?',
+    'Как выглядит мой процесс, если убрать страх ошибки и требование идеальности?',
+    'Что сегодня я сделала хорошо? Что могу себе за это сказать?'
+  ];
+  let text = 'ВОПРОСЫ ДЛЯ РЕФЛЕКСИИ\n' + '─'.repeat(30) + '\n\n';
+  areas.forEach((a, i) => {
+    text += `${i+1}. ${questions[i]}\n${a.value.trim() || '-'}\n\n`;
+  });
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('#tab-reflect .copy-btn');
+    btn.textContent = 'СКОПИРОВАНО ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent='СКОПИРОВАТЬ РЕФЛЕКСИЮ'; btn.classList.remove('copied'); }, 2500);
+  });
+}
+
+/* Init */
+addEntry();
+</script>
+</body>
+</html>
