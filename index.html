@@ -9,74 +9,84 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',-apple-system,sans-serif;background:#F0F4F8;color:#1a2a3a;min-height:100vh;padding:0 0 80px 0;-webkit-text-size-adjust:100%}
-.hdr{background:linear-gradient(135deg,#2D6A8A,#1B4F6B);color:#fff;padding:20px 16px 14px;text-align:center;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.hdr h1{font-size:16px;font-weight:600}
+body{font-family:'Inter',-apple-system,sans-serif;background:#F3F0F7;color:#2D2640;min-height:100vh;padding:0 0 80px 0;-webkit-text-size-adjust:100%}
+.hdr{background:linear-gradient(135deg,#9B7EB8,#7B5EA0);color:#fff;padding:22px 16px 16px;text-align:center;position:sticky;top:0;z-index:20;box-shadow:0 2px 12px rgba(123,94,160,.25)}
+.hdr h1{font-size:16px;font-weight:600;letter-spacing:.02em}
+.hdr-sub{font-size:11px;opacity:.8;margin-top:2px}
 .dn{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px}
-.dn button{background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer}
-.dn button:active{background:rgba(255,255,255,.3)}
+.dn button{background:rgba(255,255,255,.18);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer}
+.dn button:active{background:rgba(255,255,255,.35)}
 .dl{font-size:14px;font-weight:500;min-width:160px;text-align:center}
-.wrap{max-width:480px;margin:0 auto;padding:10px 12px}
-.blk{background:#fff;border-radius:14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.04);overflow:hidden}
+.motto{text-align:center;padding:12px 16px 4px;font-size:12px;color:#9B7EB8;font-style:italic;line-height:1.4}
+.wrap{max-width:480px;margin:0 auto;padding:6px 12px}
+.blk{background:#fff;border-radius:16px;margin-bottom:8px;box-shadow:0 1px 6px rgba(123,94,160,.06);overflow:hidden;border:1px solid #EDE8F3}
 .bh{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
 .bl{display:flex;align-items:center;gap:10px}
-.bi{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
-.bt{font-size:13px;font-weight:600;color:#1a2a3a}
-.ba{font-size:10px;color:#8BA4B8;transition:transform .2s}
+.bi{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.bt{font-size:13px;font-weight:600;color:#2D2640}
+.ba{font-size:10px;color:#B8A8CC;transition:transform .2s}
 .ba.o{transform:rotate(180deg)}
 .bb{padding:0 14px 12px;display:none}
 .bb.o{display:block}
-.c1{background:#DBE9F4;color:#2D6A8A}.c2{background:#F4DBE1;color:#8A2D3E}
-.c3{background:#F4ECDB;color:#8A6A2D}.c4{background:#DBF4E4;color:#2D8A4A}
-.c5{background:#E4DBF4;color:#5A2D8A}.c6{background:#F4DBEF;color:#8A2D6A}
-.c7{background:#DBF0F4;color:#2D7A8A}.c8{background:#F4F0DB;color:#6A6A2D}
-.c9{background:#F0F4DB;color:#4A8A2D}.c10{background:#E8F0E8;color:#3A6A3A}
-.ht{font-size:11px;color:#6B8EA6;line-height:1.5;margin-bottom:8px;padding:7px 9px;background:#F4F8FB;border-radius:7px;border-left:2.5px solid #A3C4D9}
-.hr{border-left-color:#D98A8A;background:#FBF4F4;color:#8A5555}
-textarea,.ti{width:100%;border:1.5px solid #DDE6ED;border-radius:7px;padding:9px 11px;font-family:inherit;font-size:13px;color:#1a2a3a;background:#FAFCFD;resize:none;outline:none;line-height:1.5}
-textarea:focus,.ti:focus{border-color:#2D6A8A}
-textarea::placeholder,.ti::placeholder{color:#B0C4D4}
+.c1{background:#EDE8F3;font-size:14px}.c2{background:#F7E8ED;font-size:14px}
+.c3{background:#F0ECE4;font-size:14px}.c4{background:#E4F0EC;font-size:14px}
+.c5{background:#E8E4F3;font-size:14px}.c6{background:#F3E4F0;font-size:14px}
+.c7{background:#E4EDF3;font-size:14px}.c8{background:#F3F0E4;font-size:14px}
+.c9{background:#EDF3E4;font-size:14px}.c10{background:#E8F0E8;font-size:14px}
+.ht{font-size:11px;color:#8B7BA0;line-height:1.5;margin-bottom:8px;padding:7px 9px;background:#F8F5FC;border-radius:8px;border-left:2.5px solid #C4B0DB}
+.hr{border-left-color:#D4A0B0;background:#FCF5F7;color:#8A5A6A}
+textarea,.ti{width:100%;border:1.5px solid #E0D8EA;border-radius:8px;padding:9px 11px;font-family:inherit;font-size:13px;color:#2D2640;background:#FDFCFE;resize:none;outline:none;line-height:1.5}
+textarea:focus,.ti:focus{border-color:#9B7EB8}
+textarea::placeholder,.ti::placeholder{color:#C4B8D4}
 .sr{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.sl{font-size:12px;color:#2D6A8A;min-width:68px;font-weight:500}
+.sl{font-size:12px;color:#7B5EA0;min-width:68px;font-weight:500}
 .sw{flex:1}
-input[type="range"]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:#DDE6ED;outline:none}
-input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#2D6A8A;cursor:pointer;border:3px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.sv{font-size:14px;font-weight:600;color:#2D6A8A;min-width:28px;text-align:center}
+input[type="range"]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:#E0D8EA;outline:none}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#9B7EB8;cursor:pointer;border:3px solid #fff;box-shadow:0 1px 4px rgba(123,94,160,.3)}
+.sv{font-size:14px;font-weight:600;color:#7B5EA0;min-width:28px;text-align:center}
 .tg{display:flex;gap:5px;margin-bottom:5px;flex-wrap:wrap}
-.tb{padding:7px 10px;border:1.5px solid #C8D8E6;border-radius:7px;background:#fff;font-size:12px;font-weight:500;color:#6B8EA6;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
-.tb.a{border-color:#2D6A8A;background:#2D6A8A;color:#fff}
-.ci{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid #EEF2F6;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tb{padding:7px 10px;border:1.5px solid #D8CEE6;border-radius:8px;background:#fff;font-size:12px;font-weight:500;color:#8B7BA0;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.tb.a{border-color:#9B7EB8;background:#9B7EB8;color:#fff}
+.ci{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid #F0ECF5;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ci:last-child{border-bottom:none}
-.cb{width:18px;height:18px;border:2px solid #C8D8E6;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
-.cb.k{background:#3D9B6A;border-color:#3D9B6A}
+.cb{width:18px;height:18px;border:2px solid #D8CEE6;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.cb.k{background:#8BC49B;border-color:#8BC49B}
 .cb.k::after{content:'\2713';color:#fff;font-size:11px;font-weight:700}
-.ct{font-size:12px;color:#3B5368}
-.se{border:1px solid #DDE6ED;border-radius:9px;padding:10px;margin-bottom:7px;background:#FAFCFD}
+.ct{font-size:12px;color:#4A3D5C}
+.se{border:1px solid #E0D8EA;border-radius:10px;padding:10px;margin-bottom:7px;background:#FDFCFE}
 .set{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.sn{font-size:12px;font-weight:600;color:#2D6A8A}
-.sd{font-size:10px;color:#C0564B;background:none;border:1px solid #C0564B;border-radius:4px;padding:2px 7px;cursor:pointer}
-.sub{font-size:12px;font-weight:600;color:#2D6A8A;margin:8px 0 3px}
+.sn{font-size:12px;font-weight:600;color:#7B5EA0}
+.sd{font-size:10px;color:#C07090;background:none;border:1px solid #C07090;border-radius:4px;padding:2px 7px;cursor:pointer}
+.sub{font-size:12px;font-weight:600;color:#7B5EA0;margin:8px 0 3px}
 .gap{height:5px}
-.ab{width:100%;padding:9px;background:#fff;color:#2D6A8A;border:1.5px dashed #A3C4D9;border-radius:9px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;margin-top:5px}
-.bbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #DDE6ED;padding:8px 12px;z-index:20;display:flex;gap:8px;justify-content:center}
-.bsv{flex:2;padding:13px;background:#2D6A8A;color:#fff;border:none;border-radius:10px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;max-width:280px}
-.bsv:active{background:#1B4F6B}
-.bsv.ok{background:#3D9B6A}
-.bex{flex:1;padding:13px;background:#fff;color:#2D6A8A;border:1.5px solid #2D6A8A;border-radius:10px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;max-width:140px}
-.wl{max-height:150px;overflow-y:auto;margin-top:6px;padding:5px;background:#F4F8FB;border-radius:7px}
-.wi{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #EEF2F6;font-size:11px;color:#3B5368}
+.ab{width:100%;padding:9px;background:#FDFCFE;color:#9B7EB8;border:1.5px dashed #C4B0DB;border-radius:10px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;margin-top:5px}
+.bbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E0D8EA;padding:8px 12px;z-index:20;display:flex;gap:8px;justify-content:center}
+.bsv{flex:2;padding:13px;background:linear-gradient(135deg,#9B7EB8,#7B5EA0);color:#fff;border:none;border-radius:10px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;max-width:280px}
+.bsv:active{background:#7B5EA0}
+.bsv.ok{background:#8BC49B}
+.bex{flex:1;padding:13px;background:#fff;color:#9B7EB8;border:1.5px solid #9B7EB8;border-radius:10px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;max-width:140px}
+.wl{max-height:150px;overflow-y:auto;margin-top:6px;padding:5px;background:#F8F5FC;border-radius:7px}
+.wi{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #F0ECF5;font-size:11px;color:#4A3D5C}
 .wi:last-child{border-bottom:none}
-.wd{color:#C0564B;cursor:pointer;font-size:10px;padding:2px 5px}
+.wd{color:#C07090;cursor:pointer;font-size:10px;padding:2px 5px}
 .awr{display:flex;gap:6px;margin-top:4px}
 .awr input{flex:1}
-.awb{padding:8px 14px;background:#2D6A8A;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer}
+.awb{padding:8px 14px;background:#9B7EB8;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer}
+.flower{text-align:center;padding:6px 0 2px;font-size:10px;color:#C4B0DB;letter-spacing:3px}
+.support{text-align:center;padding:8px 16px;font-size:11px;color:#9B7EB8;font-style:italic;background:#F8F5FC;border-radius:10px;margin-bottom:8px;line-height:1.5}
 </style>
 </head>
 <body>
-<div class="hdr"><h1>МОЙ ДНЕВНИК</h1><div class="dn"><button onclick="cd(-1)">&#9664;</button><span class="dl" id="dL">-</span><button onclick="cd(1)">&#9654;</button></div></div>
-<div class="wrap" id="app">
+<div class="hdr">
+<h1>&#127804; МОЙ ДНЕВНИК &#127804;</h1>
+<div class="hdr-sub">Супер Кэт знает свою цену</div>
+<div class="dn"><button onclick="cd(-1)">&#9664;</button><span class="dl" id="dL">-</span><button onclick="cd(1)">&#9654;</button></div>
+</div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c1">1</div><span class="bt">День и настроение</span></div><span class="ba o">&#9660;</span></div>
+<div class="wrap" id="app">
+<div class="motto" id="mottoEl"></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c1">&#127771;</div><span class="bt">День и настроение</span></div><span class="ba o">&#9660;</span></div>
 <div class="bb o" id="b1">
 <div class="sr"><span class="sl">Тревога</span><div class="sw"><input type="range" min="0" max="10" value="5" data-s="anx" oninput="us(this)"></div><span class="sv">5</span></div>
 <div class="sr"><span class="sl">Настроение</span><div class="sw"><input type="range" min="-3" max="3" value="0" data-s="mood" oninput="us(this)"></div><span class="sv">0</span></div>
@@ -86,17 +96,26 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;hei
 <div class="tg" data-g="sq"><div class="tb" onclick="sl(this)">Плохо</div><div class="tb" onclick="sl(this)">Удовл.</div><div class="tb a" onclick="sl(this)">Хорошо</div><div class="tb" onclick="sl(this)">Отлично</div></div>
 </div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c2">2</div><span class="bt">Эпизоды С / Т / Б</span></div><span class="ba">&#9660;</span></div>
-<div class="bb" id="b2"><div class="ht">Записывайте все эпизоды страха, тревоги и беспокойства за день.</div><div id="sL"></div><button class="ab" onclick="aS()">+ Добавить эпизод</button></div></div>
+<div class="flower">&#10047; &#10047; &#10047;</div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c3">3</div><span class="bt">Избегание за день</span></div><span class="ba">&#9660;</span></div>
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c2">&#128156;</div><span class="bt">Эпизоды С / Т / Б</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b2"><div class="ht">Записывайте все эпизоды страха, тревоги и беспокойства. Каждый разобранный эпизод - шаг к свободе.</div><div id="sL"></div><button class="ab" onclick="aS()">+ Добавить эпизод</button></div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c3">&#128064;</div><span class="bt">Избегание за день</span></div><span class="ba">&#9660;</span></div>
 <div class="bb" id="b3"><div class="ht">Избегание - когда вы НЕ делаете что-то из-за страха/тревоги. Действия: не позвонили, не написали, не выступили, не записали видео. Ситуации: не пошли в место, избегали человека, отложили задачу.</div>
 <div class="sub">Каких действий избегала</div><textarea data-t="avA" rows="2" placeholder="Что не сделала..."></textarea><div class="gap"></div>
 <div class="sub">Каких ситуаций избегала</div><textarea data-t="avS" rows="2" placeholder="Куда не пошла, кого избегала..."></textarea></div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c8">4</div><span class="bt">Самокритик (Андрей)</span></div><span class="ba">&#9660;</span></div>
+<div class="support">&#127800; Это не моё - забирай обратно. Я всего достойна &#127800;</div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c8">&#128293;</div><span class="bt">Самокритик (Андрей)</span></div><span class="ba">&#9660;</span></div>
 <div class="bb" id="b4">
-<div class="ht hr">Красные флажки критика:<br>- "Этот пост недостаточно хорош, надо докрутить" (избегание)<br>- "Другие врачи какие клиники, а я тут..." (сравнение)<br>- "Я недостаточно знаю, нужен ещё курс" (самозванец)<br>- "Нельзя лежать, надо показать деятельность" (суета)<br>- "Ошиблась в слове - всё, провал" (катастрофизация)</div>
+<div class="ht hr">Красные флажки критика - отлавливай:<br>
+&#128681; "Этот пост недостаточно хорош" (избегание)<br>
+&#128681; "Другие врачи лучше, а я тут..." (сравнение)<br>
+&#128681; "Недостаточно знаю, нужен ещё курс" (самозванец)<br>
+&#128681; "Нельзя лежать, надо показать деятельность" (суета)<br>
+&#128681; "Ошиблась в слове - всё, провал" (катастрофизация)</div>
 <div class="sub">Включался ли сегодня</div><div class="tg" data-g="crY"><div class="tb" onclick="sl(this)">Да</div><div class="tb" onclick="sl(this)">Нет</div></div>
 <div class="sub">Когда, в какой ситуации</div><textarea data-t="crW" rows="2" placeholder="Когда включился критик..."></textarea><div class="gap"></div>
 <div class="sub">Что говорил (голос критика)</div><textarea data-t="crV" rows="2" placeholder="Что говорил внутренний голос..."></textarea><div class="gap"></div>
@@ -104,8 +123,10 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;hei
 <div class="sub">Задание от Андрея</div><textarea data-t="thT" rows="2" placeholder="Задание на неделю..."></textarea><div class="gap"></div>
 <div class="sub">Заметки по терапии</div><textarea data-t="thN" rows="2" placeholder="Мысли, выводы..."></textarea></div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c4">5</div><span class="bt">Телесные практики</span></div><span class="ba">&#9660;</span></div>
-<div class="bb" id="b5"><div class="ht">По назначению каждый день, не в момент тревоги.</div>
+<div class="flower">&#10048; &#10048; &#10048;</div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c4">&#127807;</div><span class="bt">Телесные практики</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b5"><div class="ht">По назначению каждый день, не в момент тревоги. Ты тренируешь навык спокойствия.</div>
 <div class="sub">Диафрагмальное дыхание</div>
 <div class="ci" onclick="tc(this)"><div class="cb" data-c="br1"></div><div class="ct">N1 Диафрагмальное - 10 мин</div></div>
 <div class="ci" onclick="tc(this)"><div class="cb" data-c="br2"></div><div class="ct">N2 Ритм 4-2-4 - 5 мин</div></div>
@@ -119,12 +140,14 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;hei
 <div class="ci" onclick="tc(this)"><div class="cb" data-c="pmS"></div><div class="ct">Сигнальная мышечная релаксация</div></div>
 </div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c5">6</div><span class="bt">Осознанность</span></div><span class="ba">&#9660;</span></div>
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c5">&#128996;</div><span class="bt">Осознанность</span></div><span class="ba">&#9660;</span></div>
 <div class="bb" id="b6"><div class="ci" onclick="tc(this)"><div class="cb" data-c="mnD"></div><div class="ct">Практика выполнена</div></div>
 <div class="sub">Название практики</div><input type="text" class="ti" data-t="mnN" placeholder="Название...">
 <div class="sub">Заметки</div><textarea data-t="mnO" rows="2" placeholder="Наблюдения..."></textarea></div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c6">7</div><span class="bt">Голос и речь</span></div><span class="ba">&#9660;</span></div>
+<div class="support">&#128009; 80% упорного труда, 10% таланта, 10% удачи &#128009;</div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c6">&#127908;</div><span class="bt">Голос и речь</span></div><span class="ba">&#9660;</span></div>
 <div class="bb" id="b7">
 <div class="sub">Дикция</div><div class="ht">Каждое упражнение 1-2 мин или от 10 раз.</div>
 <div class="ci" onclick="tc(this)"><div class="cb" data-c="d1"></div><div class="ct">Поднятие верхней губы</div></div>
@@ -179,50 +202,57 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;hei
 <div class="sub">Заметки по речи</div><textarea data-t="spN" rows="2" placeholder="Слова, фразы, наблюдения..."></textarea>
 </div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c7">8</div><span class="bt">Фитнес</span></div><span class="ba">&#9660;</span></div>
+<div class="flower">&#10049; &#10049; &#10049;</div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c7">&#128170;</div><span class="bt">Фитнес</span></div><span class="ba">&#9660;</span></div>
 <div class="bb" id="b8">
 <div class="ci" onclick="tc(this)"><div class="cb" data-c="gym"></div><div class="ct">Зарядка</div></div>
 <div class="ci" onclick="tc(this)"><div class="cb" data-c="fit"></div><div class="ct">FitStars - тренировка</div></div>
 <div class="sub">Программа</div><input type="text" class="ti" data-t="ftN" placeholder="Название программы...">
 </div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c9">9</div><span class="bt">Вечерний блок</span></div><span class="ba">&#9660;</span></div>
+<div class="support">&#127800; Хочешь чаю? Ты заслуживаешь заботы о себе &#127800;</div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c9">&#10024;</div><span class="bt">Вечерний блок</span></div><span class="ba">&#9660;</span></div>
 <div class="bb" id="b9">
 <div class="sub">Что хорошего сегодня произошло</div><textarea data-t="gD" rows="2" placeholder="Хорошие события..."></textarea><div class="gap"></div>
-<div class="sub">Со мной всё окей</div><div class="ht">Что получилось не блестяще, а просто нормально, на "четвёрочку" - и мир не рухнул.</div><textarea data-t="ok" rows="2" placeholder="Что получилось нормально..."></textarea><div class="gap"></div>
-<div class="sub">Мои 80% упорного труда</div><div class="ht">Похвали за процесс, не за результат. Критик требует гениальности - а ты просто работала.</div><textarea data-t="eff" rows="2" placeholder="За какие усилия хвалю себя..."></textarea><div class="gap"></div>
-<div class="sub">Хочешь чаю?</div><div class="ht">Как защитила право на отдых, комфорт или границы?</div><textarea data-t="rst" rows="2" placeholder="Как отдыхала, как защитила границы..."></textarea><div class="gap"></div>
+<div class="sub">Со мной всё окей</div><div class="ht">Что получилось не блестяще, а просто нормально - и мир не рухнул. На крепкую четвёрочку.</div><textarea data-t="ok" rows="2" placeholder="Что получилось нормально..."></textarea><div class="gap"></div>
+<div class="sub">Мои 80% упорного труда</div><div class="ht">Похвали за процесс, не за результат. Ты работала - и это ценно.</div><textarea data-t="eff" rows="2" placeholder="За какие усилия хвалю себя..."></textarea><div class="gap"></div>
+<div class="sub">Хочешь чаю?</div><div class="ht">Как защитила право на отдых, комфорт или границы? Не вскочила, не изобразила занятость?</div><textarea data-t="rst" rows="2" placeholder="Как отдыхала, как защитила границы..."></textarea><div class="gap"></div>
 <div class="sub">В чём я сегодня была хороша</div><textarea data-t="gM" rows="2" placeholder="Чем горжусь..."></textarea>
 </div></div>
 
-<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c10">10</div><span class="bt">Цель на завтра</span></div><span class="ba">&#9660;</span></div>
-<div class="bb" id="b10"><div class="ht">Одно самое важное дело. Не список из 20 пунктов.</div><textarea data-t="goal" rows="2" placeholder="Самое важное на завтра..."></textarea></div></div>
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c10">&#127919;</div><span class="bt">Цель на завтра</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b10"><div class="ht">Одно самое важное дело. Не список из 20 пунктов. Одно ключевое.</div><textarea data-t="goal" rows="2" placeholder="Самое важное на завтра..."></textarea></div></div>
 
+<div class="flower">&#10047; &#127804; &#10047;</div>
 </div>
-<div class="bbar"><button class="bsv" id="svB" onclick="save()">СОХРАНИТЬ</button><button class="bex" onclick="exp()">Экспорт</button></div>
+
+<div class="bbar"><button class="bsv" id="svB" onclick="save()">&#127804; СОХРАНИТЬ</button><button class="bex" onclick="exp()">Экспорт</button></div>
 
 <script>
-let cD=new Date().toISOString().split('T')[0],sC=0,wds=[];
-const MO=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
-const DA=['вс','пн','вт','ср','чт','пт','сб'];
-function fd(d){const t=new Date(d);return t.getDate()+' '+MO[t.getMonth()]+' '+t.getFullYear()+', '+DA[t.getDay()]}
+var mottos=["Это не моё - забирай обратно. Я всего достойна","Супер Кэт знает свою цену","80% упорного труда, 10% таланта, 10% удачи","Хочешь чаю? Ты заслуживаешь паузы","Я не обязана быть идеальной, чтобы быть ценной","Дракон внутри меня сильнее любого критика","Каждый разобранный эпизод - шаг к свободе","Мне не нужно разрешение, чтобы быть собой","Ошибка - это данные, а не приговор","Я достаточно хороша прямо сейчас"];
+var cD=new Date().toISOString().split('T')[0],sC=0,wds=[];
+var MO=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+var DA=['вс','пн','вт','ср','чт','пт','сб'];
+function fd(d){var t=new Date(d);return t.getDate()+' '+MO[t.getMonth()]+' '+t.getFullYear()+', '+DA[t.getDay()]}
 function tg(e){e.nextElementSibling.classList.toggle('o');e.querySelector('.ba').classList.toggle('o')}
 function tc(i){i.querySelector('.cb').classList.toggle('k')}
 function sl(e){e.parentElement.querySelectorAll('.tb').forEach(function(b){b.classList.remove('a')});e.classList.add('a')}
 function us(e){var v=e.value;e.parentElement.nextElementSibling.textContent=(e.dataset.s==='mood'&&v>0?'+':'')+v}
-function sH(n){var id='s'+(++sC);return '<div class="se" id="'+id+'"><div class="set"><span class="sn">Эпизод '+n+'</span>'+(n>1?'<button class="sd" onclick="dS(\''+id+'\')">x</button>':'')+'</div><div class="ht">С - страх (угроза сейчас). Т - тревога (в будущем). Б - беспокойство (прокручивание).</div><div class="tg" data-g="tp_'+id+'"><div class="tb" onclick="sl(this)">С</div><div class="tb" onclick="sl(this)">Т</div><div class="tb" onclick="sl(this)">Б</div></div><div class="sub">Ситуация</div><div class="ht">Где были, что происходило, кто участвовал? Что стало пусковым моментом?</div><textarea data-f="sit" rows="2" placeholder="Что произошло..."></textarea><div class="sub">Оценка</div><div class="ht">Что пронеслось в голове ДО реакции за доли секунды?</div><textarea data-f="eval" rows="2" placeholder="Мгновенная мысль..."></textarea><div class="sub">Внимание</div><div class="ht">К чему приковано внимание? Внимание в тревоге сужается и цепляется за опасное.</div><textarea data-f="att" rows="2" placeholder="За чем следила..."></textarea><div class="sub">Стимулы</div><div class="ht">Что конкретно кажется опасным? Внешнее или внутреннее?</div><textarea data-f="stim" rows="2" placeholder="Что кажется опасным..."></textarea><div class="sub">Катастрофизация</div><div class="ht">Худший сценарий? Не мыслите ли всё или ничего?</div><textarea data-f="cat" rows="2" placeholder="Худший сценарий..."></textarea><div class="sub">Факты за и против</div><div class="ht">Какие факты за опасность? За безопасность? Были ли случаи когда прогнозы не сбывались?</div><textarea data-f="facts" rows="2" placeholder="За / против..."></textarea><div class="sub">Альтернативные объяснения</div><div class="ht">Как ещё можно объяснить? Что упускаете?</div><textarea data-f="alt" rows="2" placeholder="Другие объяснения..."></textarea><div class="sub">Копинг</div><div class="ht">Что буду делать если худшее случится?</div><textarea data-f="cope" rows="2" placeholder="Как справлюсь..."></textarea><div class="sub">Избегание</div><div class="ht">Избегали ситуацию? Ушли, отменили, использовали защитное поведение?</div><textarea data-f="avoid" rows="2" placeholder="Было ли избегание..."></textarea><div class="sr" style="margin-top:6px"><span class="sl">Реакция</span><div class="sw"><input type="range" min="0" max="10" value="5" data-f="react" oninput="us(this)"></div><span class="sv">5</span></div><div class="sr"><span class="sl">Избегание</span><div class="sw"><input type="range" min="0" max="10" value="5" data-f="avdn" oninput="us(this)"></div><span class="sv">5</span></div><div class="sub">Заметка</div><textarea data-f="note" rows="1" placeholder="Наблюдения..."></textarea></div>'}
+function sH(n){var id='s'+(++sC);return '<div class="se" id="'+id+'"><div class="set"><span class="sn">Эпизод '+n+'</span>'+(n>1?'<button class="sd" onclick="dS(\''+id+'\')">x</button>':'')+'</div><div class="ht">С - страх (угроза сейчас). Т - тревога (в будущем). Б - беспокойство (прокручивание).</div><div class="tg" data-g="tp_'+id+'"><div class="tb" onclick="sl(this)">С</div><div class="tb" onclick="sl(this)">Т</div><div class="tb" onclick="sl(this)">Б</div></div><div class="sub">Ситуация</div><div class="ht">Где были, что происходило, кто участвовал?</div><textarea data-f="sit" rows="2" placeholder="Что произошло..."></textarea><div class="sub">Оценка</div><div class="ht">Что пронеслось в голове ДО реакции за доли секунды?</div><textarea data-f="eval" rows="2" placeholder="Мгновенная мысль..."></textarea><div class="sub">Внимание</div><div class="ht">К чему приковано внимание? Оно сужается и цепляется за опасное.</div><textarea data-f="att" rows="2" placeholder="За чем следила..."></textarea><div class="sub">Стимулы</div><div class="ht">Что конкретно кажется опасным? Внешнее или внутреннее?</div><textarea data-f="stim" rows="2" placeholder="Что кажется опасным..."></textarea><div class="sub">Катастрофизация</div><div class="ht">Худший сценарий? Не мыслите ли всё или ничего?</div><textarea data-f="cat" rows="2" placeholder="Худший сценарий..."></textarea><div class="sub">Факты за и против</div><div class="ht">Факты за опасность? За безопасность? Были ли случаи когда прогнозы не сбывались?</div><textarea data-f="facts" rows="2" placeholder="За / против..."></textarea><div class="sub">Альтернативные объяснения</div><div class="ht">Как ещё можно объяснить? Что упускаете?</div><textarea data-f="alt" rows="2" placeholder="Другие объяснения..."></textarea><div class="sub">Копинг</div><div class="ht">Что буду делать если худшее случится?</div><textarea data-f="cope" rows="2" placeholder="Как справлюсь..."></textarea><div class="sub">Избегание</div><div class="ht">Избегали ситуацию? Ушли, отменили, защитное поведение?</div><textarea data-f="avoid" rows="2" placeholder="Было ли избегание..."></textarea><div class="sr" style="margin-top:6px"><span class="sl">Реакция</span><div class="sw"><input type="range" min="0" max="10" value="5" data-f="react" oninput="us(this)"></div><span class="sv">5</span></div><div class="sr"><span class="sl">Избегание</span><div class="sw"><input type="range" min="0" max="10" value="5" data-f="avdn" oninput="us(this)"></div><span class="sv">5</span></div><div class="sub">Заметка</div><textarea data-f="note" rows="1" placeholder="Наблюдения..."></textarea></div>'}
 function aS(){var c=document.getElementById('sL'),n=c.querySelectorAll('.se').length+1;c.insertAdjacentHTML('beforeend',sH(n))}
 function dS(id){if(!confirm('Удалить?'))return;document.getElementById(id).remove();document.querySelectorAll('.se').forEach(function(e,i){e.querySelector('.sn').textContent='Эпизод '+(i+1)})}
 function aW(){var i=document.getElementById('nW'),w=i.value.trim();if(!w)return;wds.push(w);i.value='';rW()}
 function dW(i){wds.splice(i,1);rW()}
-function rW(){var c=document.getElementById('wL');if(!wds.length){c.innerHTML='<div style="font-size:11px;color:#93B1C4;padding:4px">Пока пусто</div>';return}c.innerHTML=wds.map(function(w,i){return'<div class="wi"><span>'+w+'</span><span class="wd" onclick="dW('+i+')">x</span></div>'}).join('')}
+function rW(){var c=document.getElementById('wL');if(!wds.length){c.innerHTML='<div style="font-size:11px;color:#B8A8CC;padding:4px">Пока пусто</div>';return}c.innerHTML=wds.map(function(w,i){return'<div class="wi"><span>'+w+'</span><span class="wd" onclick="dW('+i+')">x</span></div>'}).join('')}
 function coll(){var d={};document.querySelectorAll('[data-s]').forEach(function(e){d['s_'+e.dataset.s]=e.value});document.querySelectorAll('[data-t]').forEach(function(e){d['t_'+e.dataset.t]=e.value});document.querySelectorAll('[data-c]').forEach(function(e){d['c_'+e.dataset.c]=e.classList.contains('k')?1:0});document.querySelectorAll('[data-g]').forEach(function(g){var a=g.querySelector('.tb.a');d['g_'+g.dataset.g]=a?a.textContent:''});var stbs=[];document.querySelectorAll('.se').forEach(function(e){var en={};var tb=e.querySelector('.tg .tb.a');en.type=tb?tb.textContent:'';e.querySelectorAll('[data-f]').forEach(function(f){en[f.dataset.f]=f.value||''});stbs.push(en)});d.stbs=stbs;d.wds=wds;return d}
 function apply(d){if(!d)return;document.querySelectorAll('[data-s]').forEach(function(e){if(d['s_'+e.dataset.s]!==undefined){e.value=d['s_'+e.dataset.s];us(e)}});document.querySelectorAll('[data-t]').forEach(function(e){if(d['t_'+e.dataset.t]!==undefined)e.value=d['t_'+e.dataset.t]});document.querySelectorAll('[data-c]').forEach(function(e){e.classList.toggle('k',d['c_'+e.dataset.c]===1)});document.querySelectorAll('[data-g]').forEach(function(g){var v=d['g_'+g.dataset.g];g.querySelectorAll('.tb').forEach(function(b){b.classList.toggle('a',b.textContent===v)})});var l=document.getElementById('sL');l.innerHTML='';sC=0;if(d.stbs&&d.stbs.length){d.stbs.forEach(function(en,i){l.insertAdjacentHTML('beforeend',sH(i+1));var el=l.lastElementChild;if(en.type)el.querySelectorAll('.tg .tb').forEach(function(b){b.classList.toggle('a',b.textContent===en.type)});el.querySelectorAll('[data-f]').forEach(function(f){if(en[f.dataset.f]!==undefined){f.value=en[f.dataset.f];if(f.type==='range')us(f)}})})}wds=d.wds||[];rW()}
 function clr(){document.querySelectorAll('textarea').forEach(function(t){t.value=''});document.querySelectorAll('.ti').forEach(function(t){t.value=''});document.querySelectorAll('[data-s]').forEach(function(e){e.value=e.dataset.s==='mood'?0:e.dataset.s==='slp'?7:5;us(e)});document.querySelectorAll('.cb').forEach(function(c){c.classList.remove('k')});document.querySelectorAll('[data-g]').forEach(function(g){g.querySelectorAll('.tb').forEach(function(b){b.classList.remove('a')})});var sq=document.querySelector('[data-g="sq"] .tb:nth-child(3)');if(sq)sq.classList.add('a');document.getElementById('sL').innerHTML='';sC=0;wds=[];rW()}
-function save(){try{localStorage.setItem('d_'+cD,JSON.stringify(coll()))}catch(e){}var b=document.getElementById('svB');b.textContent='СОХРАНЕНО';b.classList.add('ok');setTimeout(function(){b.textContent='СОХРАНИТЬ';b.classList.remove('ok')},2000)}
-function load(date){cD=date;document.getElementById('dL').textContent=fd(date);clr();try{var r=localStorage.getItem('d_'+date);if(r)apply(JSON.parse(r))}catch(e){}}
+function save(){try{localStorage.setItem('d_'+cD,JSON.stringify(coll()))}catch(e){}var b=document.getElementById('svB');b.textContent='СОХРАНЕНО';b.classList.add('ok');setTimeout(function(){b.textContent='\uD83C\uDF38 СОХРАНИТЬ';b.classList.remove('ok')},2000)}
+function load(date){cD=date;document.getElementById('dL').textContent=fd(date);document.getElementById('mottoEl').textContent='\u2728 '+mottos[Math.floor(Math.random()*mottos.length)]+' \u2728';clr();try{var r=localStorage.getItem('d_'+date);if(r)apply(JSON.parse(r))}catch(e){}}
 function cd(delta){var d=new Date(cD);d.setDate(d.getDate()+delta);load(d.toISOString().split('T')[0])}
-function exp(){var all='',keys=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k.startsWith('d_'))keys.push(k)}keys.sort();if(!keys.length){alert('Нет записей');return}keys.forEach(function(k){var date=k.replace('d_',''),d=JSON.parse(localStorage.getItem(k));all+='\n==============================\n'+fd(date)+'\n==============================\n';all+='Тревога: '+(d.s_anx||5)+'/10 | Настроение: '+(d.s_mood||0)+' | Энергия: '+(d.s_nrg||5)+'/10 | Сон: '+(d.s_slp||7)+'ч '+(d.g_sq||'')+'\n';if(d.stbs&&d.stbs.length){d.stbs.forEach(function(s,i){var tp=s.type==='С'?'Страх':s.type==='Т'?'Тревога':s.type==='Б'?'Беспокойство':s.type;all+='\n--- Эпизод '+(i+1)+': '+tp+' ---\n';if(s.sit)all+='Ситуация: '+s.sit+'\n';if(s.eval)all+='Оценка: '+s.eval+'\n';if(s.att)all+='Внимание: '+s.att+'\n';if(s.stim)all+='Стимулы: '+s.stim+'\n';if(s.cat)all+='Катастрофизация: '+s.cat+'\n';if(s.facts)all+='Факты: '+s.facts+'\n';if(s.alt)all+='Альтернативы: '+s.alt+'\n';if(s.cope)all+='Копинг: '+s.cope+'\n';if(s.avoid)all+='Избегание: '+s.avoid+'\n';all+='Реакция: '+(s.react||5)+'/10, Избегание: '+(s.avdn||5)+'/10\n';if(s.note)all+='Заметка: '+s.note+'\n'})}if(d.t_avA||d.t_avS)all+='\nИзбегание дня: '+(d.t_avA||'-')+' / '+(d.t_avS||'-')+'\n';if(d.g_crY==='Да')all+='\nКритик: '+(d.t_crW||'')+' | Голос: '+(d.t_crV||'')+' | Ответ: '+(d.t_crR||'')+'\n';if(d.t_thT||d.t_thN)all+='Терапия: '+(d.t_thT||'')+' '+(d.t_thN||'')+'\n';if(d.t_gD)all+='Хорошее: '+d.t_gD+'\n';if(d.t_ok)all+='Окей: '+d.t_ok+'\n';if(d.t_eff)all+='Труд: '+d.t_eff+'\n';if(d.t_rst)all+='Отдых: '+d.t_rst+'\n';if(d.t_gM)all+='Была хороша: '+d.t_gM+'\n';if(d.t_goal)all+='Цель: '+d.t_goal+'\n';if(d.wds&&d.wds.length)all+='Слова: '+d.wds.join(', ')+'\n';all+='\n'});navigator.clipboard.writeText(all).then(function(){var b=document.querySelector('.bex');b.textContent='Скопировано!';setTimeout(function(){b.textContent='Экспорт'},2500)}).catch(function(){var w=window.open('','_blank');if(w){w.document.write('<pre style="white-space:pre-wrap;font-size:14px;padding:16px">'+all.replace(/</g,'&lt;')+'</pre>');w.document.title='Экспорт дневника'}else{alert('Разрешите всплывающие окна для этого сайта')}})}
+function exp(){var all='',keys=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k.startsWith('d_'))keys.push(k)}keys.sort();if(!keys.length){alert('Нет записей');return}keys.forEach(function(k){var date=k.replace('d_',''),d=JSON.parse(localStorage.getItem(k));all+='\n==============================\n'+fd(date)+'\n==============================\n';all+='Тревога: '+(d.s_anx||5)+'/10 | Настроение: '+(d.s_mood||0)+' | Энергия: '+(d.s_nrg||5)+'/10 | Сон: '+(d.s_slp||7)+'ч '+(d.g_sq||'')+'\n';if(d.stbs&&d.stbs.length){d.stbs.forEach(function(s,i){var tp=s.type==='С'?'Страх':s.type==='Т'?'Тревога':s.type==='Б'?'Беспокойство':s.type;all+='\n--- Эпизод '+(i+1)+': '+tp+' ---\n';if(s.sit)all+='Ситуация: '+s.sit+'\n';if(s.eval)all+='Оценка: '+s.eval+'\n';if(s.att)all+='Внимание: '+s.att+'\n';if(s.stim)all+='Стимулы: '+s.stim+'\n';if(s.cat)all+='Катастрофизация: '+s.cat+'\n';if(s.facts)all+='Факты: '+s.facts+'\n';if(s.alt)all+='Альтернативы: '+s.alt+'\n';if(s.cope)all+='Копинг: '+s.cope+'\n';if(s.avoid)all+='Избегание: '+s.avoid+'\n';all+='Реакция: '+(s.react||5)+'/10, Избегание: '+(s.avdn||5)+'/10\n';if(s.note)all+='Заметка: '+s.note+'\n'})}if(d.t_avA||d.t_avS)all+='\nИзбегание дня: '+(d.t_avA||'-')+' / '+(d.t_avS||'-')+'\n';if(d.g_crY==='Да')all+='\nКритик: '+(d.t_crW||'')+' | Голос: '+(d.t_crV||'')+' | Ответ: '+(d.t_crR||'')+'\n';if(d.t_thT||d.t_thN)all+='Терапия: '+(d.t_thT||'')+' '+(d.t_thN||'')+'\n';var bp=[];var bm={br1:'Диафрагмальное N1',br2:'Ритм 4-2-4',br3:'Удлинённый выдох',br4:'Сигнальная релаксация',pmA:'ПМР всё тело',pm4:'ПМР 4 группы',pm8:'ПМР 8 групп',p16:'ПМР 16 групп',pmS:'Сигнальная мышечная'};Object.keys(bm).forEach(function(k){if(d['c_'+k])bp.push(bm[k])});if(bp.length)all+='Тело: '+bp.join(', ')+'\n';if(d.c_mnD)all+='Осознанность: '+(d.t_mnN||'да')+' '+(d.t_mnO||'')+'\n';var sp=[];var sm={d1:'Поднятие губы',d2:'Трубочка-улыбка',d3:'Уколы',d4:'Покусывания',d5:'Два сапога',d6:'Цоканье',d7:'Мочки ушей',d8:'Пробка',d9:'Скороговорки',dA:'Говор',v1:'Мычание',v2:'Зевание',v3:'Зловещий смех',v4:'Стон',v5:'Соглашение',v6:'Скрипы',v7:'Лай',v8:'Галя',v9:'Пропевание',r1:'Свеча',r2:'Ой-ух ты',r3:'Вдох-выдох',r4:'Собачье дыхание',r5:'Колокол',r6:'Филирование',r7:'33 Егорки',r8:'Заполнение',w1:'Чтение вслух',w2:'5 мин о предмете',w3:'Классика',w4:'Убеди другого',w5:'Цитаты',w6:'Блог',w7:'Пересказ',i1:'Худ. литература',i2:'Автоответчик',i3:'Новость',i4:'Призыв',i5:'Профессия',i6:'Ударения',i7:'Видео',i8:'Запись голоса'};Object.keys(sm).forEach(function(k){if(d['c_'+k])sp.push(sm[k])});if(sp.length)all+='Речь: '+sp.join(', ')+'\n';if(d.t_spN)all+='Заметки речь: '+d.t_spN+'\n';if(d.c_gym)all+='Зарядка: да\n';if(d.c_fit)all+='FitStars: '+(d.t_ftN||'да')+'\n';if(d.t_gD)all+='Хорошее: '+d.t_gD+'\n';if(d.t_ok)all+='Окей: '+d.t_ok+'\n';if(d.t_eff)all+='Труд: '+d.t_eff+'\n';if(d.t_rst)all+='Отдых: '+d.t_rst+'\n';if(d.t_gM)all+='Была хороша: '+d.t_gM+'\n';if(d.t_goal)all+='Цель: '+d.t_goal+'\n';if(d.wds&&d.wds.length)all+='Слова: '+d.wds.join(', ')+'\n';all+='\n'});navigator.clipboard.writeText(all).then(function(){var b=document.querySelector('.bex');b.textContent='Скопировано!';setTimeout(function(){b.textContent='Экспорт'},2500)}).catch(function(){var w=window.open('','_blank');if(w){w.document.write('<pre style="white-space:pre-wrap;font-size:14px;padding:16px">'+all.replace(/</g,'&lt;')+'</pre>');w.document.title='Экспорт дневника'}})}
 load(cD);rW();
 </script>
 </body>
