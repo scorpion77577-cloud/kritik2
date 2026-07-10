@@ -3,486 +3,227 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Мои Практики и Дневник</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Мой дневник</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Source Sans 3',-apple-system,sans-serif;background:#EEEbF7;color:#1E1D3D;min-height:100vh;padding:0 0 100px 0}
-
-  /* HEADER */
-  .header{background:linear-gradient(135deg,#7C6BAD,#6A57A0);color:#fff;padding:28px 20px 22px;text-align:center;position:sticky;top:0;z-index:10}
-  .header h1{font-size:17px;font-weight:500;letter-spacing:.03em}
-  .header p{font-size:12px;font-weight:300;margin-top:4px;opacity:.8}
-
-  .container{max-width:480px;margin:0 auto;padding:14px}
-
-  /* TAB NAV */
-  .tab-nav{display:flex;gap:6px;margin-bottom:16px;background:#fff;border-radius:12px;padding:6px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-  .tab-btn{flex:1;padding:9px 4px;border:none;border-radius:8px;background:transparent;font-family:inherit;font-size:13px;font-weight:500;color:#9580C8;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
-  .tab-btn.active{background:#7C6BAD;color:#fff}
-
-  /* SECTIONS */
-  .section{background:#fff;border-radius:12px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .section-num{display:inline-block;width:22px;height:22px;background:#7C6BAD;color:#fff;border-radius:50%;text-align:center;line-height:22px;font-size:12px;font-weight:600;margin-right:6px;vertical-align:middle}
-  .section-title{font-size:14px;font-weight:600;color:#4A3A80;display:inline;vertical-align:middle}
-  .section-head{margin-bottom:8px}
-
-  /* PRACTICE CARDS */
-  .practice-card{background:#fff;border-radius:14px;margin-bottom:12px;box-shadow:0 1px 4px rgba(124,107,173,.12);border:1px solid #E5DCFA;overflow:hidden}
-  .practice-card-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
-  .practice-card-header:active{background:#F8F5FF}
-  .practice-icon-title{display:flex;align-items:center;gap:10px}
-  .practice-icon{font-size:20px;flex-shrink:0}
-  .practice-name{font-size:14px;font-weight:600;color:#4A3A80;line-height:1.3}
-  .practice-goal{font-size:11px;color:#9580C8;margin-top:2px;font-weight:400}
-  .chevron{font-size:14px;color:#B8A8E0;transition:transform .25s;flex-shrink:0}
-  .chevron.open{transform:rotate(180deg)}
-  .practice-body{padding:0 16px 14px;display:none;border-top:1px solid #F0EAF8}
-  .practice-body.open{display:block}
-  .practice-body-inner{padding-top:12px}
-
-  .step{display:flex;gap:10px;margin-bottom:10px}
-  .step-num{width:22px;height:22px;background:#EDE6FF;color:#7C6BAD;border-radius:50%;text-align:center;line-height:22px;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px}
-  .step-content{font-size:13px;color:#3A2F6A;line-height:1.55}
-  .step-content strong{font-weight:600;color:#4A3A80}
-  .step-content em{font-style:italic;color:#6A5898}
-
-  .bullet{display:flex;gap:8px;margin-bottom:7px}
-  .bullet-dot{width:6px;height:6px;background:#B8A8E0;border-radius:50%;flex-shrink:0;margin-top:7px}
-  .bullet-text{font-size:13px;color:#3A2F6A;line-height:1.5}
-
-  .sub-option{padding:8px 12px;border-radius:8px;margin-bottom:6px;font-size:13px;color:#3A2F6A;line-height:1.45}
-  .sub-option.interest{background:#EBF7EE;border-left:3px solid #6ABF80}
-  .sub-option.whip{background:#FFF0F0;border-left:3px solid #E08080}
-  .sub-option .opt-label{font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
-  .sub-option.interest .opt-label{color:#4A9A60}
-  .sub-option.whip .opt-label{color:#C06060}
-
-  .hint{font-size:12px;color:#7A68B0;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:#F5F0FF;border-radius:8px;border-left:3px solid #C5B8E8}
-  .reminder-box{background:#F5F0FF;border-radius:10px;padding:12px 14px;border-left:4px solid #9580C8;font-size:13px;color:#3A2F6A;line-height:1.6}
-  .reminder-box strong{color:#4A3A80}
-
-  /* DIARY */
-  .entry-block{margin-bottom:20px}
-  .entry-header{display:flex;align-items:center;justify-content:space-between;padding:10px 0;margin-bottom:6px}
-  .entry-label{font-size:15px;font-weight:600;color:#7C6BAD}
-  .entry-delete{font-size:12px;color:#B85470;background:none;border:1px solid #B85470;border-radius:6px;padding:4px 10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-  .entry-separator{height:3px;background:linear-gradient(90deg,transparent,#9580C8,transparent);margin:16px 0 12px;opacity:.4}
-
-  textarea{width:100%;border:1.5px solid #D8CEED;border-radius:8px;padding:10px 12px;font-family:inherit;font-size:14px;color:#1E1D3D;background:#FDFAFF;resize:none;outline:none;transition:border-color .2s;line-height:1.5}
-  textarea:focus{border-color:#7C6BAD}
-  textarea::placeholder{color:#C0B0DA}
-  .date-row{display:flex;gap:8px}
-  .date-input,.time-input{flex:1;border:1.5px solid #D8CEED;border-radius:8px;padding:10px 12px;font-family:inherit;font-size:14px;color:#1E1D3D;background:#FDFAFF;outline:none}
-  .date-input:focus,.time-input:focus{border-color:#7C6BAD}
-
-  .practice-used-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #EDE6FA;cursor:pointer;-webkit-tap-highlight-color:transparent}
-  .practice-used-item:last-child{border-bottom:none}
-  .checkbox{width:22px;height:22px;border:2px solid #C8BAE8;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
-  .checkbox.checked{background:#7C6BAD;border-color:#7C6BAD}
-  .checkbox.checked::after{content:'\2713';color:#fff;font-size:14px;font-weight:600}
-  .practice-used-text{font-size:14px;color:#4A3A80}
-  .sub-label{font-size:13px;font-weight:500;color:#7C6BAD;margin:10px 0 4px}
-
-  /* BUTTONS */
-  .copy-btn{display:block;width:100%;padding:16px;background:#7C6BAD;color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;transition:all .2s}
-  .copy-btn:active{transform:scale(.98);background:#6A57A0}
-  .copy-btn.copied{background:#5A9A70}
-  .clear-btn{display:block;width:100%;padding:12px;background:transparent;color:#A890CC;border:1.5px solid #D8CEED;border-radius:12px;font-family:inherit;font-size:14px;cursor:pointer;margin-top:8px}
-  .add-btn{display:block;width:100%;padding:14px;background:#fff;color:#7C6BAD;border:2px dashed #C5B8E8;border-radius:12px;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;margin-top:6px;transition:all .2s;-webkit-tap-highlight-color:transparent}
-  .add-btn:active{background:#F5F0FF}
-  .divider{height:2px;background:linear-gradient(90deg,transparent,#C5B8E8,transparent);margin:6px 0}
-  .copy-section{padding:16px 0}
-
-  /* REFLECTION */
-  .reflect-q{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(124,107,173,.1);border:1px solid #E5DCFA}
-  .reflect-q-text{font-size:13px;color:#4A3A80;font-style:italic;line-height:1.6;margin-bottom:10px}
-  .reflect-q-text::before{content:'"';font-size:22px;color:#C5B8E8;font-style:normal;line-height:0;vertical-align:-8px;margin-right:4px}
-  .final-note{text-align:center;font-size:13px;color:#9580C8;padding:20px 10px;font-style:italic}
-
-  /* TAB PAGES */
-  .tab-page{display:none}
-  .tab-page.active{display:block}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;background:#F0F4F8;color:#1a2a3a;min-height:100vh;padding:0 0 80px 0;-webkit-text-size-adjust:100%}
+.hdr{background:linear-gradient(135deg,#2D6A8A,#1B4F6B);color:#fff;padding:20px 16px 14px;text-align:center;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.hdr h1{font-size:16px;font-weight:600}
+.dn{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px}
+.dn button{background:rgba(255,255,255,.15);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer}
+.dn button:active{background:rgba(255,255,255,.3)}
+.dl{font-size:14px;font-weight:500;min-width:160px;text-align:center}
+.wrap{max-width:480px;margin:0 auto;padding:10px 12px}
+.blk{background:#fff;border-radius:14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.04);overflow:hidden}
+.bh{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.bl{display:flex;align-items:center;gap:10px}
+.bi{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.bt{font-size:13px;font-weight:600;color:#1a2a3a}
+.ba{font-size:10px;color:#8BA4B8;transition:transform .2s}
+.ba.o{transform:rotate(180deg)}
+.bb{padding:0 14px 12px;display:none}
+.bb.o{display:block}
+.c1{background:#DBE9F4;color:#2D6A8A}.c2{background:#F4DBE1;color:#8A2D3E}
+.c3{background:#F4ECDB;color:#8A6A2D}.c4{background:#DBF4E4;color:#2D8A4A}
+.c5{background:#E4DBF4;color:#5A2D8A}.c6{background:#F4DBEF;color:#8A2D6A}
+.c7{background:#DBF0F4;color:#2D7A8A}.c8{background:#F4F0DB;color:#6A6A2D}
+.c9{background:#F0F4DB;color:#4A8A2D}.c10{background:#E8F0E8;color:#3A6A3A}
+.ht{font-size:11px;color:#6B8EA6;line-height:1.5;margin-bottom:8px;padding:7px 9px;background:#F4F8FB;border-radius:7px;border-left:2.5px solid #A3C4D9}
+.hr{border-left-color:#D98A8A;background:#FBF4F4;color:#8A5555}
+textarea,.ti{width:100%;border:1.5px solid #DDE6ED;border-radius:7px;padding:9px 11px;font-family:inherit;font-size:13px;color:#1a2a3a;background:#FAFCFD;resize:none;outline:none;line-height:1.5}
+textarea:focus,.ti:focus{border-color:#2D6A8A}
+textarea::placeholder,.ti::placeholder{color:#B0C4D4}
+.sr{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.sl{font-size:12px;color:#2D6A8A;min-width:68px;font-weight:500}
+.sw{flex:1}
+input[type="range"]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:#DDE6ED;outline:none}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#2D6A8A;cursor:pointer;border:3px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.sv{font-size:14px;font-weight:600;color:#2D6A8A;min-width:28px;text-align:center}
+.tg{display:flex;gap:5px;margin-bottom:5px;flex-wrap:wrap}
+.tb{padding:7px 10px;border:1.5px solid #C8D8E6;border-radius:7px;background:#fff;font-size:12px;font-weight:500;color:#6B8EA6;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.tb.a{border-color:#2D6A8A;background:#2D6A8A;color:#fff}
+.ci{display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid #EEF2F6;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ci:last-child{border-bottom:none}
+.cb{width:18px;height:18px;border:2px solid #C8D8E6;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.cb.k{background:#3D9B6A;border-color:#3D9B6A}
+.cb.k::after{content:'\2713';color:#fff;font-size:11px;font-weight:700}
+.ct{font-size:12px;color:#3B5368}
+.se{border:1px solid #DDE6ED;border-radius:9px;padding:10px;margin-bottom:7px;background:#FAFCFD}
+.set{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.sn{font-size:12px;font-weight:600;color:#2D6A8A}
+.sd{font-size:10px;color:#C0564B;background:none;border:1px solid #C0564B;border-radius:4px;padding:2px 7px;cursor:pointer}
+.sub{font-size:12px;font-weight:600;color:#2D6A8A;margin:8px 0 3px}
+.gap{height:5px}
+.ab{width:100%;padding:9px;background:#fff;color:#2D6A8A;border:1.5px dashed #A3C4D9;border-radius:9px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;margin-top:5px}
+.bbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #DDE6ED;padding:8px 12px;z-index:20;display:flex;gap:8px;justify-content:center}
+.bsv{flex:2;padding:13px;background:#2D6A8A;color:#fff;border:none;border-radius:10px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;max-width:280px}
+.bsv:active{background:#1B4F6B}
+.bsv.ok{background:#3D9B6A}
+.bex{flex:1;padding:13px;background:#fff;color:#2D6A8A;border:1.5px solid #2D6A8A;border-radius:10px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;max-width:140px}
+.wl{max-height:150px;overflow-y:auto;margin-top:6px;padding:5px;background:#F4F8FB;border-radius:7px}
+.wi{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #EEF2F6;font-size:11px;color:#3B5368}
+.wi:last-child{border-bottom:none}
+.wd{color:#C0564B;cursor:pointer;font-size:10px;padding:2px 5px}
+.awr{display:flex;gap:6px;margin-top:4px}
+.awr input{flex:1}
+.awb{padding:8px 14px;background:#2D6A8A;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer}
 </style>
 </head>
 <body>
+<div class="hdr"><h1>МОЙ ДНЕВНИК</h1><div class="dn"><button onclick="cd(-1)">&#9664;</button><span class="dl" id="dL">-</span><button onclick="cd(1)">&#9654;</button></div></div>
+<div class="wrap" id="app">
 
-<div class="header">
-  <h1>МОИ ПРАКТИКИ И ДНЕВНИК</h1>
-  <p>Справочник практик · Дневник наблюдений · Рефлексия</p>
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c1">1</div><span class="bt">День и настроение</span></div><span class="ba o">&#9660;</span></div>
+<div class="bb o" id="b1">
+<div class="sr"><span class="sl">Тревога</span><div class="sw"><input type="range" min="0" max="10" value="5" data-s="anx" oninput="us(this)"></div><span class="sv">5</span></div>
+<div class="sr"><span class="sl">Настроение</span><div class="sw"><input type="range" min="-3" max="3" value="0" data-s="mood" oninput="us(this)"></div><span class="sv">0</span></div>
+<div class="sr"><span class="sl">Энергия</span><div class="sw"><input type="range" min="0" max="10" value="5" data-s="nrg" oninput="us(this)"></div><span class="sv">5</span></div>
+<div class="sr"><span class="sl">Сон, ч</span><div class="sw"><input type="range" min="0" max="12" value="7" step="0.5" data-s="slp" oninput="us(this)"></div><span class="sv">7</span></div>
+<div class="sub">Качество сна</div>
+<div class="tg" data-g="sq"><div class="tb" onclick="sl(this)">Плохо</div><div class="tb" onclick="sl(this)">Удовл.</div><div class="tb a" onclick="sl(this)">Хорошо</div><div class="tb" onclick="sl(this)">Отлично</div></div>
+</div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c2">2</div><span class="bt">Эпизоды С / Т / Б</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b2"><div class="ht">Записывайте все эпизоды страха, тревоги и беспокойства за день.</div><div id="sL"></div><button class="ab" onclick="aS()">+ Добавить эпизод</button></div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c3">3</div><span class="bt">Избегание за день</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b3"><div class="ht">Избегание - когда вы НЕ делаете что-то из-за страха/тревоги. Действия: не позвонили, не написали, не выступили, не записали видео. Ситуации: не пошли в место, избегали человека, отложили задачу.</div>
+<div class="sub">Каких действий избегала</div><textarea data-t="avA" rows="2" placeholder="Что не сделала..."></textarea><div class="gap"></div>
+<div class="sub">Каких ситуаций избегала</div><textarea data-t="avS" rows="2" placeholder="Куда не пошла, кого избегала..."></textarea></div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c8">4</div><span class="bt">Самокритик (Андрей)</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b4">
+<div class="ht hr">Красные флажки критика:<br>- "Этот пост недостаточно хорош, надо докрутить" (избегание)<br>- "Другие врачи какие клиники, а я тут..." (сравнение)<br>- "Я недостаточно знаю, нужен ещё курс" (самозванец)<br>- "Нельзя лежать, надо показать деятельность" (суета)<br>- "Ошиблась в слове - всё, провал" (катастрофизация)</div>
+<div class="sub">Включался ли сегодня</div><div class="tg" data-g="crY"><div class="tb" onclick="sl(this)">Да</div><div class="tb" onclick="sl(this)">Нет</div></div>
+<div class="sub">Когда, в какой ситуации</div><textarea data-t="crW" rows="2" placeholder="Когда включился критик..."></textarea><div class="gap"></div>
+<div class="sub">Что говорил (голос критика)</div><textarea data-t="crV" rows="2" placeholder="Что говорил внутренний голос..."></textarea><div class="gap"></div>
+<div class="sub">Что ответила / как справилась</div><textarea data-t="crR" rows="2" placeholder="Как ответила критику..."></textarea><div class="gap"></div>
+<div class="sub">Задание от Андрея</div><textarea data-t="thT" rows="2" placeholder="Задание на неделю..."></textarea><div class="gap"></div>
+<div class="sub">Заметки по терапии</div><textarea data-t="thN" rows="2" placeholder="Мысли, выводы..."></textarea></div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c4">5</div><span class="bt">Телесные практики</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b5"><div class="ht">По назначению каждый день, не в момент тревоги.</div>
+<div class="sub">Диафрагмальное дыхание</div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="br1"></div><div class="ct">N1 Диафрагмальное - 10 мин</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="br2"></div><div class="ct">N2 Ритм 4-2-4 - 5 мин</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="br3"></div><div class="ct">N3 Удлинённый выдох - 5 мин</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="br4"></div><div class="ct">N4 Сигнальная релаксация - 10 мин</div></div>
+<div class="sub">ПМР</div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="pmA"></div><div class="ct">ПМР на всё тело сразу</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="pm4"></div><div class="ct">ПМР на 4 группы мышц</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="pm8"></div><div class="ct">ПМР на 8 групп мышц</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="p16"></div><div class="ct">ПМР на 16 групп мышц</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="pmS"></div><div class="ct">Сигнальная мышечная релаксация</div></div>
+</div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c5">6</div><span class="bt">Осознанность</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b6"><div class="ci" onclick="tc(this)"><div class="cb" data-c="mnD"></div><div class="ct">Практика выполнена</div></div>
+<div class="sub">Название практики</div><input type="text" class="ti" data-t="mnN" placeholder="Название...">
+<div class="sub">Заметки</div><textarea data-t="mnO" rows="2" placeholder="Наблюдения..."></textarea></div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c6">7</div><span class="bt">Голос и речь</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b7">
+<div class="sub">Дикция</div><div class="ht">Каждое упражнение 1-2 мин или от 10 раз.</div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d1"></div><div class="ct">Поднятие верхней губы</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d2"></div><div class="ct">Трубочка-улыбка</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d3"></div><div class="ct">Уколы</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d4"></div><div class="ct">Покусывания</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d5"></div><div class="ct">Два сапога пара</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d6"></div><div class="ct">Цоканье</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d7"></div><div class="ct">Почёсывания мочек ушей</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d8"></div><div class="ct">Работа с пробкой</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="d9"></div><div class="ct">Скороговорки</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="dA"></div><div class="ct">Работа с говором</div></div>
+<div class="sub">Голос</div><div class="ht">Каждое упражнение 1-2 мин или от 10 раз.</div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v1"></div><div class="ct">Мычание</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v2"></div><div class="ct">Зевание</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v3"></div><div class="ct">Зловещий смех</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v4"></div><div class="ct">Стон</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v5"></div><div class="ct">Соглашение (Угу/Ага)</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v6"></div><div class="ct">Скрипы</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v7"></div><div class="ct">Лай</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v8"></div><div class="ct">Галя</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="v9"></div><div class="ct">Пропевание гласных</div></div>
+<div class="sub">Дыхание (речевое)</div><div class="ht">Каждое упражнение 1-2 мин или от 10 раз.</div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r1"></div><div class="ct">Свеча</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r2"></div><div class="ct">Ой-ух ты</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r3"></div><div class="ct">Вдох-выдох (нос-рот)</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r4"></div><div class="ct">Собачье дыхание</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r5"></div><div class="ct">Колокол (Бом)</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r6"></div><div class="ct">Филирование гласных</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r7"></div><div class="ct">33 Егорки</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="r8"></div><div class="ct">Заполнение пространства</div></div>
+<div class="sub">Словарный запас</div><div class="ht">Говорите, читайте, пересказывайте - каждый день.</div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="w1"></div><div class="ct">Чтение вслух от 5 мин</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="w2"></div><div class="ct">5 минут о предмете</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="w3"></div><div class="ct">Чтение классики</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="w4"></div><div class="ct">Убеди другого</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="w5"></div><div class="ct">Коллекционирование цитат</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="w6"></div><div class="ct">Ведение блога</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="w7"></div><div class="ct">Пересказ</div></div>
+<div class="sub">Интонирование</div><div class="ht">Разные стили подачи. Следите за ударениями.</div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i1"></div><div class="ct">Чтение худ. литературы</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i2"></div><div class="ct">Манера автоответчика</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i3"></div><div class="ct">Чтение новости</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i4"></div><div class="ct">Призыв</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i5"></div><div class="ct">Какая у него профессия?</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i6"></div><div class="ct">Работа с ударениями</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i7"></div><div class="ct">Запись на видео</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="i8"></div><div class="ct">Прослушивание записи</div></div>
+<div class="sub">Слово дня</div>
+<div class="awr"><input type="text" class="ti" id="nW" placeholder="Новое слово..."><button class="awb" onclick="aW()">+</button></div>
+<div class="wl" id="wL"></div>
+<div class="sub">Заметки по речи</div><textarea data-t="spN" rows="2" placeholder="Слова, фразы, наблюдения..."></textarea>
+</div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c7">8</div><span class="bt">Фитнес</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b8">
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="gym"></div><div class="ct">Зарядка</div></div>
+<div class="ci" onclick="tc(this)"><div class="cb" data-c="fit"></div><div class="ct">FitStars - тренировка</div></div>
+<div class="sub">Программа</div><input type="text" class="ti" data-t="ftN" placeholder="Название программы...">
+</div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c9">9</div><span class="bt">Вечерний блок</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b9">
+<div class="sub">Что хорошего сегодня произошло</div><textarea data-t="gD" rows="2" placeholder="Хорошие события..."></textarea><div class="gap"></div>
+<div class="sub">Со мной всё окей</div><div class="ht">Что получилось не блестяще, а просто нормально, на "четвёрочку" - и мир не рухнул.</div><textarea data-t="ok" rows="2" placeholder="Что получилось нормально..."></textarea><div class="gap"></div>
+<div class="sub">Мои 80% упорного труда</div><div class="ht">Похвали за процесс, не за результат. Критик требует гениальности - а ты просто работала.</div><textarea data-t="eff" rows="2" placeholder="За какие усилия хвалю себя..."></textarea><div class="gap"></div>
+<div class="sub">Хочешь чаю?</div><div class="ht">Как защитила право на отдых, комфорт или границы?</div><textarea data-t="rst" rows="2" placeholder="Как отдыхала, как защитила границы..."></textarea><div class="gap"></div>
+<div class="sub">В чём я сегодня была хороша</div><textarea data-t="gM" rows="2" placeholder="Чем горжусь..."></textarea>
+</div></div>
+
+<div class="blk"><div class="bh" onclick="tg(this)"><div class="bl"><div class="bi c10">10</div><span class="bt">Цель на завтра</span></div><span class="ba">&#9660;</span></div>
+<div class="bb" id="b10"><div class="ht">Одно самое важное дело. Не список из 20 пунктов.</div><textarea data-t="goal" rows="2" placeholder="Самое важное на завтра..."></textarea></div></div>
+
 </div>
-
-<div class="container">
-
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('practices')">🌿 Практики</button>
-    <button class="tab-btn" onclick="showTab('diary')">📓 Дневник</button>
-    <button class="tab-btn" onclick="showTab('reflect')">💭 Рефлексия</button>
-  </div>
-
-  <!-- ======================== TAB: ПРАКТИКИ ======================== -->
-  <div class="tab-page active" id="tab-practices">
-
-    <!-- Ритуал «Хочешь чаю?» -->
-    <div class="practice-card">
-      <div class="practice-card-header" onclick="toggleCard(this)">
-        <div class="practice-icon-title">
-          <span class="practice-icon">🍵</span>
-          <div>
-            <div class="practice-name">Ритуал «Хочешь чаю?»</div>
-            <div class="practice-goal">Остановка Внутреннего Критика</div>
-          </div>
-        </div>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="practice-body">
-        <div class="practice-body-inner">
-          <div class="hint">Разорвать паттерн самобичевания, снизить тревогу и проявить к себе безусловную заботу.</div>
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-content"><strong>Пауза:</strong> Как только ловишь себя на прокрастинации, чувстве вины за «неидеальность» или желании срочно начать очередное обучение — скажи себе <strong>СТОП</strong>.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-content"><strong>Слова заботы:</strong> Мысленно или вслух произнеси: <em>«Хочешь чаю?»</em> или <em>«Я вижу, что тебе сейчас тревожно. Я с тобой, и я принимаю тебя любую».</em></div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-content"><strong>Действие:</strong> Подкрепи слова делом. Завари чай, обними себя, или легально отдохни 15 минут без телефона и чувства вины.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Компас мотивации -->
-    <div class="practice-card">
-      <div class="practice-card-header" onclick="toggleCard(this)">
-        <div class="practice-icon-title">
-          <span class="practice-icon">🧭</span>
-          <div>
-            <div class="practice-name">Компас мотивации</div>
-            <div class="practice-goal">Хлыст или Интерес?</div>
-          </div>
-        </div>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="practice-body">
-        <div class="practice-body-inner">
-          <div class="hint">Отделить истинные желания от достигаторства, навязанного тревогой.</div>
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-content"><strong>Сканирование:</strong> Перед началом «полезного» дела сделай паузу на 10 секунд и прислушайся к телу.</div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-content"><strong>Оценка ощущений:</strong></div>
-          </div>
-          <div class="sub-option interest" style="margin-left:32px;margin-bottom:8px">
-            <div class="opt-label">Интерес ✓</div>
-            Лёгкое предвкушение, тепло, спокойная энергия
-          </div>
-          <div class="sub-option whip" style="margin-left:32px;margin-bottom:8px">
-            <div class="opt-label">Хлыст критика ✗</div>
-            Спешка, напряжение, фоновая тревога, мысль «надо быстрее / надо стать лучше»
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-content"><strong>Вопрос к себе:</strong> <em>«Кто сейчас отправляет меня это делать? Моё искреннее любопытство или страх быть недостаточной?»</em></div>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-content"><strong>Выбор:</strong> Если это критик — разреши себе сделать дело «на троечку» или отложи и легально отдохни (→ ритуал «Хочешь чаю?»).</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Эксперимент с запланированной ошибкой -->
-    <div class="practice-card">
-      <div class="practice-card-header" onclick="toggleCard(this)">
-        <div class="practice-icon-title">
-          <span class="practice-icon">🔬</span>
-          <div>
-            <div class="practice-name">Эксперимент с запланированной ошибкой</div>
-            <div class="practice-goal">Ошибка ≠ отвержение</div>
-          </div>
-        </div>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="practice-body">
-        <div class="practice-body-inner">
-          <div class="hint">Доказать Внутреннему критику на практике, что ошибка не равна отвержению.</div>
-          <div class="bullet">
-            <div class="bullet-dot"></div>
-            <div class="bullet-text">Выберите маленькую, безопасную ошибку (опечатка, оговорка, недосоленная еда).</div>
-          </div>
-          <div class="bullet">
-            <div class="bullet-dot"></div>
-            <div class="bullet-text">Запишите <strong>предсказание Критика</strong> — что ужасного случится.</div>
-          </div>
-          <div class="bullet">
-            <div class="bullet-dot"></div>
-            <div class="bullet-text">Совершите ошибку.</div>
-          </div>
-          <div class="bullet">
-            <div class="bullet-dot"></div>
-            <div class="bullet-text">Запишите <strong>реальный результат</strong> — уволили ли? отвернулись ли?</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Декатастрофизация «Обычности» -->
-    <div class="practice-card">
-      <div class="practice-card-header" onclick="toggleCard(this)">
-        <div class="practice-icon-title">
-          <span class="practice-icon">⚖️</span>
-          <div>
-            <div class="practice-name">Декатастрофизация «Обычности»</div>
-            <div class="practice-goal">Напоминание о норме</div>
-          </div>
-        </div>
-        <span class="chevron">▼</span>
-      </div>
-      <div class="practice-body">
-        <div class="practice-body-inner">
-          <div class="reminder-box">
-            Быть «среднячком» — это не дефект. Это <strong>нормальная стартовая позиция</strong>.<br><br>
-            Успех состоит из <strong>80% упорного труда</strong>, 10% таланта и 10% удачи.<br><br>
-            Ошибаться в процессе труда — это <strong>часть пути</strong>, а не доказательство никчемности.
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /tab-practices -->
-
-
-  <!-- ======================== TAB: ДНЕВНИК ======================== -->
-  <div class="tab-page" id="tab-diary">
-
-    <div id="entries"></div>
-
-    <button class="add-btn" onclick="addEntry()">+ Добавить запись</button>
-
-    <div class="divider" style="margin-top:16px"></div>
-
-    <div class="section" style="margin-top:10px">
-      <div class="section-head"><span class="section-title">Применённые практики</span></div>
-      <div class="sub-label">Отметьте то, что использовали сегодня</div>
-      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">🍵 Ритуал «Хочешь чаю?»</div></div>
-      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">🧭 Компас мотивации: Хлыст или Интерес</div></div>
-      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">🔬 Эксперимент с запланированной ошибкой</div></div>
-      <div class="practice-used-item" onclick="toggleCheck(this)"><div class="checkbox"></div><div class="practice-used-text">⚖️ Декатастрофизация «Обычности»</div></div>
-    </div>
-
-    <div class="copy-section">
-      <button class="copy-btn" id="copyBtn" onclick="copyAll()">СКОПИРОВАТЬ ВСЁ В ДНЕВНИК</button>
-      <button class="clear-btn" onclick="clearAll()">Очистить всё</button>
-    </div>
-
-  </div><!-- /tab-diary -->
-
-
-  <!-- ======================== TAB: РЕФЛЕКСИЯ ======================== -->
-  <div class="tab-page" id="tab-reflect">
-
-    <div class="reflect-q">
-      <div class="reflect-q-text">Если бы я точно знала, что меня уже любят и ценят, чем бы я занялась прямо сейчас ради удовольствия, а не ради «улучшения себя»?</div>
-      <textarea rows="5" placeholder="Свободные мысли..."></textarea>
-    </div>
-
-    <div class="reflect-q">
-      <div class="reflect-q-text">Как выглядит мой процесс обучения или работы, если из него убрать страх ошибки и требование идеальности?</div>
-      <textarea rows="5" placeholder="Свободные мысли..."></textarea>
-    </div>
-
-    <div class="reflect-q">
-      <div class="reflect-q-text">Что сегодня я сделала «хорошо» — не идеально, а именно хорошо? Что я могу себе за это сказать?</div>
-      <textarea rows="5" placeholder="Свободные мысли..."></textarea>
-    </div>
-
-    <div class="copy-section">
-      <button class="copy-btn" onclick="copyReflect()">СКОПИРОВАТЬ РЕФЛЕКСИЮ</button>
-    </div>
-
-    <div class="final-note">Создано для поддержки в терапии.<br>Помни: ты уже достаточна. 💜</div>
-
-  </div><!-- /tab-reflect -->
-
-</div><!-- /container -->
+<div class="bbar"><button class="bsv" id="svB" onclick="save()">СОХРАНИТЬ</button><button class="bex" onclick="exp()">Экспорт</button></div>
 
 <script>
-/* ---- Tabs ---- */
-function showTab(name) {
-  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.currentTarget.classList.add('active');
-}
-
-/* ---- Practice accordion ---- */
-function toggleCard(header) {
-  const body = header.nextElementSibling;
-  const chevron = header.querySelector('.chevron');
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  chevron.classList.toggle('open', !isOpen);
-}
-
-/* ---- Diary ---- */
-let entryCount = 0;
-function uid() { return 'e' + (++entryCount); }
-function now() {
-  const d = new Date();
-  return { date: d.toISOString().split('T')[0], time: `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}` };
-}
-
-function entryHTML(id, n) {
-  const t = now();
-  return `
-  <div class="entry-block" id="${id}">
-    ${n > 1 ? '<div class="entry-separator"></div>' : ''}
-    <div class="entry-header">
-      <span class="entry-label">Запись ${n}</span>
-      ${n > 1 ? `<button class="entry-delete" onclick="removeEntry('${id}')">Удалить</button>` : ''}
-    </div>
-
-    <div class="section">
-      <div class="section-head"><span class="section-num">1</span><span class="section-title">Дата и время</span></div>
-      <div class="date-row">
-        <input type="date" class="date-input" data-f="date" value="${t.date}">
-        <input type="time" class="time-input" data-f="time" value="${t.time}">
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head"><span class="section-num">2</span><span class="section-title">Ситуация</span></div>
-      <div class="hint">Что произошло? Где были, что делали, что стало пусковым моментом?</div>
-      <textarea data-f="situation" rows="3" placeholder="Коротко опишите, что произошло..."></textarea>
-    </div>
-
-    <div class="section">
-      <div class="section-head"><span class="section-num">3</span><span class="section-title">Голос Критика</span></div>
-      <div class="hint">Что он сказал? Какие эмоции и ощущения в теле появились?</div>
-      <textarea data-f="critic" rows="3" placeholder="Слова критика, эмоции, телесные ощущения..."></textarea>
-    </div>
-
-    <div class="section">
-      <div class="section-head"><span class="section-num">4</span><span class="section-title">Применённая практика</span></div>
-      <div class="hint">Компас, Чай, Эксперимент, Декатастрофизация — или своя реакция.</div>
-      <textarea data-f="practice" rows="2" placeholder="Что вы сделали в ответ..."></textarea>
-    </div>
-
-    <div class="section">
-      <div class="section-head"><span class="section-num">5</span><span class="section-title">Результат</span></div>
-      <div class="hint">Как изменилось состояние? Реальность vs Страх — что оказалось правдой?</div>
-      <textarea data-f="result" rows="3" placeholder="Что реально произошло? Как себя почувствовали..."></textarea>
-    </div>
-
-    <div class="copy-section" style="padding:8px 0">
-      <button class="copy-btn" onclick="copyEntry('${id}')">СКОПИРОВАТЬ ЭТУ ЗАПИСЬ</button>
-    </div>
-  </div>`;
-}
-
-function addEntry() {
-  const id = uid();
-  const c = document.getElementById('entries');
-  const n = c.querySelectorAll('.entry-block').length + 1;
-  c.insertAdjacentHTML('beforeend', entryHTML(id, n));
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function removeEntry(id) {
-  if (!confirm('Удалить эту запись?')) return;
-  document.getElementById(id).remove();
-  document.querySelectorAll('.entry-block').forEach((el, i) => { el.querySelector('.entry-label').textContent = `Запись ${i+1}`; });
-}
-
-function toggleCheck(item) { item.querySelector('.checkbox').classList.toggle('checked'); }
-
-function formatDate(d, t) {
-  if (!d) return '-';
-  const dt = new Date(d);
-  const m = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
-  let r = `${dt.getDate()} ${m[dt.getMonth()]} ${dt.getFullYear()}`;
-  if (t) r += `, ${t}`;
-  return r;
-}
-
-function readEntry(block) {
-  const g = (f) => { const el = block.querySelector(`[data-f="${f}"]`); return el ? (el.value||'').trim() : ''; };
-  let t = '';
-  t += `📅 ${formatDate(g('date'), g('time'))}\n\n`;
-  t += `2. Ситуация\n${g('situation')||'-'}\n\n`;
-  t += `3. Голос Критика\n${g('critic')||'-'}\n\n`;
-  t += `4. Применённая практика\n${g('practice')||'-'}\n\n`;
-  t += `5. Результат (Реальность vs Страх)\n${g('result')||'-'}\n\n---\n`;
-  return t;
-}
-
-function getPractices() {
-  const items = [];
-  document.querySelectorAll('#tab-diary > .section .checkbox.checked').forEach(cb => {
-    items.push(cb.parentElement.querySelector('.practice-used-text').textContent);
-  });
-  return items.length ? `\nПрактики сегодня:\n${items.map(i=>'✓ '+i).join('\n')}` : '';
-}
-
-function copyEntry(id) {
-  const block = document.getElementById(id);
-  const text = readEntry(block);
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = block.querySelector('.copy-btn');
-    btn.textContent = 'СКОПИРОВАНО ✓';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent='СКОПИРОВАТЬ ЭТУ ЗАПИСЬ'; btn.classList.remove('copied'); }, 2500);
-  });
-}
-
-function copyAll() {
-  const blocks = document.querySelectorAll('.entry-block');
-  let all = 'МОЙ ДНЕВНИК НАБЛЮДЕНИЙ\n' + '─'.repeat(30) + '\n\n';
-  blocks.forEach(b => { all += readEntry(b) + '\n'; });
-  all += getPractices();
-  navigator.clipboard.writeText(all).then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.textContent = 'СКОПИРОВАНО ✓';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent='СКОПИРОВАТЬ ВСЁ В ДНЕВНИК'; btn.classList.remove('copied'); }, 2500);
-  });
-}
-
-function clearAll() {
-  if (!confirm('Очистить все записи?')) return;
-  document.getElementById('entries').innerHTML = '';
-  document.querySelectorAll('#tab-diary > .section .checkbox').forEach(c => c.classList.remove('checked'));
-  entryCount = 0;
-  addEntry();
-}
-
-function copyReflect() {
-  const areas = document.querySelectorAll('#tab-reflect textarea');
-  const questions = [
-    'Если бы меня уже любили и ценили, чем бы я занялась ради удовольствия?',
-    'Как выглядит мой процесс, если убрать страх ошибки и требование идеальности?',
-    'Что сегодня я сделала хорошо? Что могу себе за это сказать?'
-  ];
-  let text = 'ВОПРОСЫ ДЛЯ РЕФЛЕКСИИ\n' + '─'.repeat(30) + '\n\n';
-  areas.forEach((a, i) => {
-    text += `${i+1}. ${questions[i]}\n${a.value.trim() || '-'}\n\n`;
-  });
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.querySelector('#tab-reflect .copy-btn');
-    btn.textContent = 'СКОПИРОВАНО ✓';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent='СКОПИРОВАТЬ РЕФЛЕКСИЮ'; btn.classList.remove('copied'); }, 2500);
-  });
-}
-
-/* Init */
-addEntry();
+let cD=new Date().toISOString().split('T')[0],sC=0,wds=[];
+const MO=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const DA=['вс','пн','вт','ср','чт','пт','сб'];
+function fd(d){const t=new Date(d);return t.getDate()+' '+MO[t.getMonth()]+' '+t.getFullYear()+', '+DA[t.getDay()]}
+function tg(e){e.nextElementSibling.classList.toggle('o');e.querySelector('.ba').classList.toggle('o')}
+function tc(i){i.querySelector('.cb').classList.toggle('k')}
+function sl(e){e.parentElement.querySelectorAll('.tb').forEach(function(b){b.classList.remove('a')});e.classList.add('a')}
+function us(e){var v=e.value;e.parentElement.nextElementSibling.textContent=(e.dataset.s==='mood'&&v>0?'+':'')+v}
+function sH(n){var id='s'+(++sC);return '<div class="se" id="'+id+'"><div class="set"><span class="sn">Эпизод '+n+'</span>'+(n>1?'<button class="sd" onclick="dS(\''+id+'\')">x</button>':'')+'</div><div class="ht">С - страх (угроза сейчас). Т - тревога (в будущем). Б - беспокойство (прокручивание).</div><div class="tg" data-g="tp_'+id+'"><div class="tb" onclick="sl(this)">С</div><div class="tb" onclick="sl(this)">Т</div><div class="tb" onclick="sl(this)">Б</div></div><div class="sub">Ситуация</div><div class="ht">Где были, что происходило, кто участвовал? Что стало пусковым моментом?</div><textarea data-f="sit" rows="2" placeholder="Что произошло..."></textarea><div class="sub">Оценка</div><div class="ht">Что пронеслось в голове ДО реакции за доли секунды?</div><textarea data-f="eval" rows="2" placeholder="Мгновенная мысль..."></textarea><div class="sub">Внимание</div><div class="ht">К чему приковано внимание? Внимание в тревоге сужается и цепляется за опасное.</div><textarea data-f="att" rows="2" placeholder="За чем следила..."></textarea><div class="sub">Стимулы</div><div class="ht">Что конкретно кажется опасным? Внешнее или внутреннее?</div><textarea data-f="stim" rows="2" placeholder="Что кажется опасным..."></textarea><div class="sub">Катастрофизация</div><div class="ht">Худший сценарий? Не мыслите ли всё или ничего?</div><textarea data-f="cat" rows="2" placeholder="Худший сценарий..."></textarea><div class="sub">Факты за и против</div><div class="ht">Какие факты за опасность? За безопасность? Были ли случаи когда прогнозы не сбывались?</div><textarea data-f="facts" rows="2" placeholder="За / против..."></textarea><div class="sub">Альтернативные объяснения</div><div class="ht">Как ещё можно объяснить? Что упускаете?</div><textarea data-f="alt" rows="2" placeholder="Другие объяснения..."></textarea><div class="sub">Копинг</div><div class="ht">Что буду делать если худшее случится?</div><textarea data-f="cope" rows="2" placeholder="Как справлюсь..."></textarea><div class="sub">Избегание</div><div class="ht">Избегали ситуацию? Ушли, отменили, использовали защитное поведение?</div><textarea data-f="avoid" rows="2" placeholder="Было ли избегание..."></textarea><div class="sr" style="margin-top:6px"><span class="sl">Реакция</span><div class="sw"><input type="range" min="0" max="10" value="5" data-f="react" oninput="us(this)"></div><span class="sv">5</span></div><div class="sr"><span class="sl">Избегание</span><div class="sw"><input type="range" min="0" max="10" value="5" data-f="avdn" oninput="us(this)"></div><span class="sv">5</span></div><div class="sub">Заметка</div><textarea data-f="note" rows="1" placeholder="Наблюдения..."></textarea></div>'}
+function aS(){var c=document.getElementById('sL'),n=c.querySelectorAll('.se').length+1;c.insertAdjacentHTML('beforeend',sH(n))}
+function dS(id){if(!confirm('Удалить?'))return;document.getElementById(id).remove();document.querySelectorAll('.se').forEach(function(e,i){e.querySelector('.sn').textContent='Эпизод '+(i+1)})}
+function aW(){var i=document.getElementById('nW'),w=i.value.trim();if(!w)return;wds.push(w);i.value='';rW()}
+function dW(i){wds.splice(i,1);rW()}
+function rW(){var c=document.getElementById('wL');if(!wds.length){c.innerHTML='<div style="font-size:11px;color:#93B1C4;padding:4px">Пока пусто</div>';return}c.innerHTML=wds.map(function(w,i){return'<div class="wi"><span>'+w+'</span><span class="wd" onclick="dW('+i+')">x</span></div>'}).join('')}
+function coll(){var d={};document.querySelectorAll('[data-s]').forEach(function(e){d['s_'+e.dataset.s]=e.value});document.querySelectorAll('[data-t]').forEach(function(e){d['t_'+e.dataset.t]=e.value});document.querySelectorAll('[data-c]').forEach(function(e){d['c_'+e.dataset.c]=e.classList.contains('k')?1:0});document.querySelectorAll('[data-g]').forEach(function(g){var a=g.querySelector('.tb.a');d['g_'+g.dataset.g]=a?a.textContent:''});var stbs=[];document.querySelectorAll('.se').forEach(function(e){var en={};var tb=e.querySelector('.tg .tb.a');en.type=tb?tb.textContent:'';e.querySelectorAll('[data-f]').forEach(function(f){en[f.dataset.f]=f.value||''});stbs.push(en)});d.stbs=stbs;d.wds=wds;return d}
+function apply(d){if(!d)return;document.querySelectorAll('[data-s]').forEach(function(e){if(d['s_'+e.dataset.s]!==undefined){e.value=d['s_'+e.dataset.s];us(e)}});document.querySelectorAll('[data-t]').forEach(function(e){if(d['t_'+e.dataset.t]!==undefined)e.value=d['t_'+e.dataset.t]});document.querySelectorAll('[data-c]').forEach(function(e){e.classList.toggle('k',d['c_'+e.dataset.c]===1)});document.querySelectorAll('[data-g]').forEach(function(g){var v=d['g_'+g.dataset.g];g.querySelectorAll('.tb').forEach(function(b){b.classList.toggle('a',b.textContent===v)})});var l=document.getElementById('sL');l.innerHTML='';sC=0;if(d.stbs&&d.stbs.length){d.stbs.forEach(function(en,i){l.insertAdjacentHTML('beforeend',sH(i+1));var el=l.lastElementChild;if(en.type)el.querySelectorAll('.tg .tb').forEach(function(b){b.classList.toggle('a',b.textContent===en.type)});el.querySelectorAll('[data-f]').forEach(function(f){if(en[f.dataset.f]!==undefined){f.value=en[f.dataset.f];if(f.type==='range')us(f)}})})}wds=d.wds||[];rW()}
+function clr(){document.querySelectorAll('textarea').forEach(function(t){t.value=''});document.querySelectorAll('.ti').forEach(function(t){t.value=''});document.querySelectorAll('[data-s]').forEach(function(e){e.value=e.dataset.s==='mood'?0:e.dataset.s==='slp'?7:5;us(e)});document.querySelectorAll('.cb').forEach(function(c){c.classList.remove('k')});document.querySelectorAll('[data-g]').forEach(function(g){g.querySelectorAll('.tb').forEach(function(b){b.classList.remove('a')})});var sq=document.querySelector('[data-g="sq"] .tb:nth-child(3)');if(sq)sq.classList.add('a');document.getElementById('sL').innerHTML='';sC=0;wds=[];rW()}
+function save(){try{localStorage.setItem('d_'+cD,JSON.stringify(coll()))}catch(e){}var b=document.getElementById('svB');b.textContent='СОХРАНЕНО';b.classList.add('ok');setTimeout(function(){b.textContent='СОХРАНИТЬ';b.classList.remove('ok')},2000)}
+function load(date){cD=date;document.getElementById('dL').textContent=fd(date);clr();try{var r=localStorage.getItem('d_'+date);if(r)apply(JSON.parse(r))}catch(e){}}
+function cd(delta){var d=new Date(cD);d.setDate(d.getDate()+delta);load(d.toISOString().split('T')[0])}
+function exp(){var all='',keys=[];for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k.startsWith('d_'))keys.push(k)}keys.sort();if(!keys.length){alert('Нет записей');return}keys.forEach(function(k){var date=k.replace('d_',''),d=JSON.parse(localStorage.getItem(k));all+='\n==============================\n'+fd(date)+'\n==============================\n';all+='Тревога: '+(d.s_anx||5)+'/10 | Настроение: '+(d.s_mood||0)+' | Энергия: '+(d.s_nrg||5)+'/10 | Сон: '+(d.s_slp||7)+'ч '+(d.g_sq||'')+'\n';if(d.stbs&&d.stbs.length){d.stbs.forEach(function(s,i){var tp=s.type==='С'?'Страх':s.type==='Т'?'Тревога':s.type==='Б'?'Беспокойство':s.type;all+='\n--- Эпизод '+(i+1)+': '+tp+' ---\n';if(s.sit)all+='Ситуация: '+s.sit+'\n';if(s.eval)all+='Оценка: '+s.eval+'\n';if(s.att)all+='Внимание: '+s.att+'\n';if(s.stim)all+='Стимулы: '+s.stim+'\n';if(s.cat)all+='Катастрофизация: '+s.cat+'\n';if(s.facts)all+='Факты: '+s.facts+'\n';if(s.alt)all+='Альтернативы: '+s.alt+'\n';if(s.cope)all+='Копинг: '+s.cope+'\n';if(s.avoid)all+='Избегание: '+s.avoid+'\n';all+='Реакция: '+(s.react||5)+'/10, Избегание: '+(s.avdn||5)+'/10\n';if(s.note)all+='Заметка: '+s.note+'\n'})}if(d.t_avA||d.t_avS)all+='\nИзбегание дня: '+(d.t_avA||'-')+' / '+(d.t_avS||'-')+'\n';if(d.g_crY==='Да')all+='\nКритик: '+(d.t_crW||'')+' | Голос: '+(d.t_crV||'')+' | Ответ: '+(d.t_crR||'')+'\n';if(d.t_thT||d.t_thN)all+='Терапия: '+(d.t_thT||'')+' '+(d.t_thN||'')+'\n';if(d.t_gD)all+='Хорошее: '+d.t_gD+'\n';if(d.t_ok)all+='Окей: '+d.t_ok+'\n';if(d.t_eff)all+='Труд: '+d.t_eff+'\n';if(d.t_rst)all+='Отдых: '+d.t_rst+'\n';if(d.t_gM)all+='Была хороша: '+d.t_gM+'\n';if(d.t_goal)all+='Цель: '+d.t_goal+'\n';if(d.wds&&d.wds.length)all+='Слова: '+d.wds.join(', ')+'\n';all+='\n'});navigator.clipboard.writeText(all).then(function(){var b=document.querySelector('.bex');b.textContent='Скопировано!';setTimeout(function(){b.textContent='Экспорт'},2500)}).catch(function(){var w=window.open('','_blank');if(w){w.document.write('<pre style="white-space:pre-wrap;font-size:14px;padding:16px">'+all.replace(/</g,'&lt;')+'</pre>');w.document.title='Экспорт дневника'}else{alert('Разрешите всплывающие окна для этого сайта')}})}
+load(cD);rW();
 </script>
 </body>
 </html>
